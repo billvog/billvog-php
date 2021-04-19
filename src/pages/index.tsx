@@ -1,41 +1,49 @@
 import React from "react";
+import { FaTwitter, FaGithub } from "react-icons/fa";
 
 const Index: React.FC<{}> = () => {
   return (
     <div className="bg-white">
       <div className="flex justify-center align-middle p-8 bg-gradient-to-r from-gray-700 to-gray-800">
         <div className="p-6 bg-gray-700 text-white flex items-center flex-col rounded-3xl">
-          <img
-            src="assets/profile.jpg"
-            className="w-28 rounded-full ring-4 ring-gray-800 ring-offset-gray-700 ring-offset-2"
-          />
-          <span className="mt-3">Basiles Bogiatzis</span>
-          <span className="text-sm text-gray-400">
-            Find me @{" "}
+          <img src="assets/profile.jpg" className="w-28 rounded-full" />
+          <div className="mt-2">Βασίλης Βογιατζής</div>
+          <div className="text-gray-400 text-xs w-full">Basiles Bogiatzis</div>
+          <div className="text-sm text-gray-400 mt-3">
             <a
               target="blank"
               href="https://github.com/billvog"
-              className="text-blue-400 font-bold hover:underline"
+              className="font-bold hover:underline flex items-center"
+              style={{
+                color: "#24292D",
+              }}
             >
+              <FaGithub className="mr-1" />
               github
             </a>
-            ,{" "}
             <a
               target="blank"
               href="https://twitter.com/BasilesBoyatzhs"
-              className="text-blue-300 font-bold hover:underline"
+              className="font-bold hover:underline flex items-center"
+              style={{
+                color: "#08a0e9",
+              }}
             >
+              <FaTwitter className="mr-1" />
               twitter
             </a>
-            ,{" "}
             <a
               target="blank"
               href="https://ferman.ga/user/voyager"
-              className="text-yellow-700 font-bold hover:underline"
+              className="font-bold hover:underline flex items-center"
+              style={{
+                color: "#deb786",
+              }}
             >
+              <img src="assets/ferman-icon.ico" className="w-3.5 mr-1" />
               ferman
             </a>
-          </span>
+          </div>
         </div>
       </div>
       <div className="bg-gray-600 text-white p-8">
