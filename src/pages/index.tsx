@@ -9,7 +9,7 @@ const Index: React.FC<{}> = () => {
         {(progress) => {
           const normalizedProgress = 1 - Math.abs(progress);
           return (
-            <div className="overflow-x-hidden">
+            <div className="overflow-x-hidden overflow-y-hidden">
               <div
                 style={{
                   backgroundImage: "url(assets/profile.jpg)",
@@ -134,23 +134,63 @@ const Index: React.FC<{}> = () => {
       <Scene duration="100%" triggerHook="onLeave" pin>
         {(progress) => {
           const normalizedProgress = 1 - Math.abs(progress);
-
+          const zoomFactor = 1 + Math.abs(progress * 8);
           return (
-            <div className="overflow-x-hidden">
+            <div className="overflow-x-hidden overflow-y-hidden">
               <div className="h-screen w-screen p-12 flex justify-center items-center bg-gradient-to-bl from-yellow-500 to-red-500">
                 <div className="flex justify-center items-center transition-all duration-200">
-                  <div className="p-8 flex justify-center align-middle max-w-lg">
-                    <div className="text-white flex items-center flex-col bg-gray-700 px-6 py-4">
-                      <div className="text-xl font-bold w-full">
-                        What do you code?
+                  <div
+                    className="flex justify-center align-middle max-w-lg"
+                    style={{
+                      transform: `scale(${zoomFactor})`,
+                    }}
+                  >
+                    <div className="text-white flex items-center flex-col bg-gray-700 px-6 py-4 rounded-sm">
+                      <div
+                        style={{
+                          opacity: normalizedProgress,
+                        }}
+                      >
+                        <div className="text-xl font-bold w-full">
+                          What do you code?
+                        </div>
+                        <div className="text-sm">
+                          I used to enjoy experimenting with C++ and Java. I
+                          also do some old classic C when I have spare time.
+                          <br />
+                          But for the most time I do web. I do backend (node,
+                          postgres, graphql) and frontend (react, tailwindcss,
+                          apollo).
+                        </div>
                       </div>
-                      <div className="text-sm">
-                        I used to enjoy experimenting with C++ and Java. I also
-                        do some old classic C when I have spare time.
-                        <br />
-                        But for the most time I do web. I do backend (node,
-                        postgres, graphql) and frontend (react, tailwindcss,
-                        apollo).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }}
+      </Scene>
+      <Scene duration="100%" triggerHook="onLeave" pin>
+        {(progress) => {
+          // const normalizedProgress = 1 - Math.abs(progress);
+          return (
+            <div className="overflow-x-hidden overflow-y-hidden">
+              <div className="h-screen w-screen p-12 flex justify-center items-center bg-gray-700">
+                <div className="flex justify-center items-center transition-all duration-200">
+                  <div className="flex justify-center align-middle max-w-lg">
+                    <div className="text-white flex items-center flex-col bg-gradient-to-bl from-yellow-500 to-red-500 px-6 py-4 rounded-2xl">
+                      <div>
+                        <div className="text-xl font-bold w-full">
+                          Lorem ispum is fast?
+                        </div>
+                        <div className="text-sm">
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Soluta consectetur a praesentium facilis libero
+                          eius fuga explicabo similique nulla iusto distinctio
+                          odio alias repudiandae molestias, cumque ea porro amet
+                          et.
+                        </div>
                       </div>
                     </div>
                   </div>
