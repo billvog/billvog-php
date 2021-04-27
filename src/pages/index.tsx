@@ -138,7 +138,7 @@ const Index: React.FC<{}> = () => {
           return (
             <div className="overflow-x-hidden overflow-y-hidden">
               <div className="h-screen w-screen p-12 flex justify-center items-center bg-gradient-to-bl from-yellow-500 to-red-500">
-                <div className="flex justify-center items-center transition-all duration-200">
+                <div className="flex justify-center items-center">
                   <div
                     className="flex justify-center align-middle max-w-lg"
                     style={{
@@ -155,12 +155,19 @@ const Index: React.FC<{}> = () => {
                           What do you code?
                         </div>
                         <div className="text-sm">
-                          I used to enjoy experimenting with C++ and Java. I
-                          also do some old classic C when I have spare time.
+                          I used to enjoy experimenting with C++ (with Qt or
+                          wxWidgets) and Java (Swing or SWT). I also, do some
+                          old classic C when I have spare time.
                           <br />
-                          But for the most time I do web. I do backend (node,
-                          postgres, graphql) and frontend (react, tailwindcss,
-                          apollo).
+                          But for the most time I do web.{" "}
+                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
+                            My favourite backend stack:
+                          </span>{" "}
+                          node, postgres, graphql{" "}
+                          <span className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-400 to-blue-600">
+                            and frontend:
+                          </span>{" "}
+                          react, tailwindcss, apollo.
                         </div>
                       </div>
                     </div>
