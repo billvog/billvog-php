@@ -26,7 +26,7 @@ const Index: React.FC<{}> = () => {
                   }}
                 >
                   <div
-                    className="flex justify-center items-center transition-all duration-200"
+                    className="flex justify-center items-center transition-all duration-100"
                     style={{
                       opacity: normalizedProgress,
                       transform: `translateY(${progress * -100}vh)`,
@@ -86,7 +86,7 @@ const Index: React.FC<{}> = () => {
                     </div>
                     <div className="p-8 flex justify-center align-middle">
                       <div className="max-w-md text-white flex items-center flex-col">
-                        <div className="text-sm">
+                        <div className="text-sm font-semibold">
                           <span>
                             My name is Basiles, I'm from Greece and I am 17
                             years old. Currently, I'm a student, but one of my
@@ -115,7 +115,10 @@ const Index: React.FC<{}> = () => {
                             <a
                               target="blank"
                               href="https://github.com/billvog"
-                              className="text-blue-700 font-bold hover:underline"
+                              className="font-bold hover:underline"
+                              style={{
+                                color: "#353c42",
+                              }}
                             >
                               github.com/billvog
                             </a>
@@ -163,11 +166,11 @@ const Index: React.FC<{}> = () => {
                           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-red-600">
                             My favourite backend stack:
                           </span>{" "}
-                          node, postgres, graphql{" "}
+                          node, expressjs, postgres, graphql{" "}
                           <span className="font-bold text-transparent bg-clip-text bg-gradient-to-br from-green-400 to-blue-600">
                             and frontend:
                           </span>{" "}
-                          react, tailwindcss, apollo.
+                          reactjs, tailwindcss, apollo.
                         </div>
                       </div>
                     </div>
