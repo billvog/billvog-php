@@ -115,7 +115,7 @@ const Index: React.FC<{}> = () => {
                             <a
                               target="blank"
                               href="https://github.com/billvog"
-                              className="text-blue-400 font-bold hover:underline"
+                              className="text-blue-700 font-bold hover:underline"
                             >
                               github.com/billvog
                             </a>
@@ -127,6 +127,16 @@ const Index: React.FC<{}> = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          );
+        }}
+      </Scene>
+      <Scene duration="100%" triggerHook="onLeave" pin>
+        {(progress) => {
+          const normalizedProgress = 1 - Math.abs(progress);
+
+          return (
+            <div className="overflow-x-hidden">
               <div className="h-screen w-screen p-12 flex justify-center items-center bg-gradient-to-bl from-yellow-500 to-red-500">
                 <div className="flex justify-center items-center transition-all duration-200">
                   <div className="p-8 flex justify-center align-middle max-w-lg">
@@ -139,7 +149,7 @@ const Index: React.FC<{}> = () => {
                         do some old classic C when I have spare time.
                         <br />
                         But for the most time I do web. I do backend (node,
-                        postgres, graphql) and frontend (react, tailwind,
+                        postgres, graphql) and frontend (react, tailwindcss,
                         apollo).
                       </div>
                     </div>
