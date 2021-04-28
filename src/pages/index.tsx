@@ -12,6 +12,7 @@ const Index: React.FC<{}> = () => {
   return (
     <>
       <Controller>
+        {/* About me */}
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
@@ -144,6 +145,7 @@ const Index: React.FC<{}> = () => {
             );
           }}
         </Scene>
+        {/* What do you code? */}
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
@@ -191,20 +193,26 @@ const Index: React.FC<{}> = () => {
             );
           }}
         </Scene>
+        {/* Contact */}
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
             return (
               <div className="overflow-x-hidden overflow-y-hidden">
-                <div className="h-screen w-screen p-12 bg-gray-700">
+                <div className="h-screen w-screen px-0 py-4 md:p-12 bg-gray-700">
                   <div className="flex justify-center items-center flex-col">
-                    <div className="max-w-xl w-full">
+                    <div className="max-w-full md:max-w-xl w-full">
+                      {/* Normal Heading */}
                       <h1
-                        className="font-bold text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6"
+                        className="font-bold text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6 md:block hidden"
                         style={{
                           textIndent: normalizedProgress * 130,
                         }}
                       >
+                        Contact me
+                      </h1>
+                      {/* Mobile Heading */}
+                      <h1 className="font-bold text-center text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6 block md:hidden">
                         Contact me
                       </h1>
                       <div
@@ -246,7 +254,7 @@ const Index: React.FC<{}> = () => {
                         >
                           {({ isSubmitting }) => (
                             <Form>
-                              <div className="flex flex-col space-y-3 bg-gray-200 shadow-xl px-6 py-8 rounded-2xl">
+                              <div className="flex flex-col space-y-3 bg-gray-200 shadow-xl px-6 py-8 md:rounded-2xl">
                                 <div className="space-y-6 mt-3">
                                   <InputField
                                     label="Name"
@@ -294,6 +302,7 @@ const Index: React.FC<{}> = () => {
           }}
         </Scene>
       </Controller>
+      {/* Contact message sent dialog */}
       <Transition show={showContactSuccessModal} as={Fragment}>
         <Dialog
           open={showContactSuccessModal}
