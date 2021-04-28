@@ -1,6 +1,9 @@
+import { Form, Formik } from "formik";
 import React from "react";
 import { FaTwitter, FaGithub } from "react-icons/fa";
 import { Controller, Scene } from "react-scrollmagic";
+import { InputField } from "../components/InputField";
+import { Spinner } from "../components/Spinner";
 
 const Index: React.FC<{}> = () => {
   return (
@@ -190,30 +193,70 @@ const Index: React.FC<{}> = () => {
           return (
             <div className="overflow-x-hidden overflow-y-hidden">
               <div className="h-screen w-screen p-12 bg-gray-700">
-                <div className="flex justify-center items-center flex-col w-full">
-                  <h1
-                    className={`font-bold text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6`}
-                  >
-                    Contact me
-                  </h1>
-                  <div
-                    className="w-full max-w-xl"
-                    style={{
-                      opacity: progress,
-                      transform: `translateY(${normalizedProgress * 100}vh)`,
-                    }}
-                  >
-                    <form className="flex flex-col space-y-4">
-                      <input type="text" placeholder="Your name" />
-                      <input type="email" placeholder="Your email" />
-                      <textarea rows={5} placeholder="Message..." />
-                      <button
-                        type="button"
-                        className="rounded-xl bg-gradient-to-br from-green-400 to-blue-600 p-2 font-semibold text-md text-white hover:to-green-600 focus:outline-none focus:ring-4 ring-offset-2 ring-offset-gray-700"
+                <div className="flex justify-center items-center flex-col">
+                  <div className="max-w-xl w-full">
+                    <h1
+                      className="font-bold text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6"
+                      style={{
+                        textIndent: normalizedProgress * 130,
+                      }}
+                    >
+                      Contact me
+                    </h1>
+                    <div
+                      style={{
+                        opacity: progress,
+                        transform: `translateY(${normalizedProgress * 100}vh)`,
+                      }}
+                    >
+                      <Formik
+                        initialValues={{
+                          name: "",
+                          email: "",
+                          message: "",
+                        }}
+                        onSubmit={async (values, { setErrors }) => {}}
                       >
-                        Send
-                      </button>
-                    </form>
+                        {({ isSubmitting }) => (
+                          <Form>
+                            <div className="flex flex-col space-y-6">
+                              <InputField
+                                label="Name"
+                                name="name"
+                                type="text"
+                                placeholder="Your name"
+                              />
+                              <InputField
+                                label="Email"
+                                name="email"
+                                type="email"
+                                placeholder="Your email"
+                              />
+                              <InputField
+                                label="Message"
+                                name="message"
+                                placeholder="Message..."
+                                textarea
+                              />
+                              <button
+                                disabled={isSubmitting}
+                                type="submit"
+                                className="flex flex-row items-center justify-center rounded-xl bg-gradient-to-br from-green-400 to-blue-600 p-2 font-semibold text-md text-white hover:from-blue-400 focus:outline-none focus:ring-4 ring-offset-2 ring-offset-gray-700"
+                              >
+                                {isSubmitting ? (
+                                  <>
+                                    <Spinner />
+                                    Sending...
+                                  </>
+                                ) : (
+                                  "Send"
+                                )}
+                              </button>
+                            </div>
+                          </Form>
+                        )}
+                      </Formik>
+                    </div>
                   </div>
                 </div>
               </div>
