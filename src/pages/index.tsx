@@ -1,11 +1,13 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { FaTwitter, FaGithub } from "react-icons/fa";
 import { Controller, Scene } from "react-scrollmagic";
 import { InputField } from "../components/InputField";
 import { Spinner } from "../components/Spinner";
 
 const Index: React.FC<{}> = () => {
+  const [contactMessage, setContactMessage] = useState<string>("");
   return (
     <Controller>
       <Scene duration="100%" triggerHook="onLeave" pin>
@@ -189,6 +191,10 @@ const Index: React.FC<{}> = () => {
       </Scene>
       <Scene duration="100%" triggerHook="onLeave" pin>
         {(progress) => {
+          if (progress === 0) {
+            setContactMessage("");
+          }
+
           const normalizedProgress = 1 - Math.abs(progress);
           return (
             <div className="overflow-x-hidden overflow-y-hidden">
@@ -215,29 +221,49 @@ const Index: React.FC<{}> = () => {
                           email: "",
                           message: "",
                         }}
-                        onSubmit={async (values, { setErrors }) => {}}
+                        onSubmit={async (values, { setErrors, resetForm }) => {
+                          axios
+                            .post("api/contact", values)
+                            .then((res) => {
+                              if (res.data.status) {
+                                console.log(res);
+                                setContactMessage(res.data.message);
+                                resetForm();
+                              } else {
+                                return setErrors({
+                                  [res.data.error.field]:
+                                    res.data.error.message,
+                                });
+                              }
+                            })
+                            .catch((reason) => {
+                              console.log("ERROR:", reason);
+                            });
+                        }}
                       >
                         {({ isSubmitting }) => (
                           <Form>
-                            <div className="flex flex-col space-y-6">
-                              <InputField
-                                label="Name"
-                                name="name"
-                                type="text"
-                                placeholder="Your name"
-                              />
-                              <InputField
-                                label="Email"
-                                name="email"
-                                type="email"
-                                placeholder="Your email"
-                              />
-                              <InputField
-                                label="Message"
-                                name="message"
-                                placeholder="Message..."
-                                textarea
-                              />
+                            <div className="flex flex-col space-y-3">
+                              <div className="space-y-6">
+                                <InputField
+                                  label="Name"
+                                  name="name"
+                                  type="text"
+                                  placeholder="Your name"
+                                />
+                                <InputField
+                                  label="Email"
+                                  name="email"
+                                  type="email"
+                                  placeholder="Your email"
+                                />
+                                <InputField
+                                  label="Message"
+                                  name="message"
+                                  placeholder="Message..."
+                                  textarea
+                                />
+                              </div>
                               <button
                                 disabled={isSubmitting}
                                 type="submit"
@@ -252,6 +278,11 @@ const Index: React.FC<{}> = () => {
                                   "Send"
                                 )}
                               </button>
+                              {contactMessage && (
+                                <div className="font-bold text-md text-transparent bg-clip-text bg-gradient-to-bl from-green-400 to-blue-600 mb-6">
+                                  {contactMessage}
+                                </div>
+                              )}
                             </div>
                           </Form>
                         )}

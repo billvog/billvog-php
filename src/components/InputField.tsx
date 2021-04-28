@@ -46,7 +46,13 @@ export const InputField: React.FC<InputFieldProps> = ({
         />
       )}
       {error && touched && (
-        <div className="mt-1 text-red-500 font-semibold text-sm">{error}</div>
+        <div
+          className={`${
+            !textarea ? "mt-1" : ""
+          } text-red-500 font-semibold text-sm`}
+        >
+          {error}
+        </div>
       )}
     </div>
   );
