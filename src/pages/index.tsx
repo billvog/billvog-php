@@ -246,8 +246,8 @@ const Index: React.FC<{}> = () => {
                         >
                           {({ isSubmitting }) => (
                             <Form>
-                              <div className="flex flex-col space-y-3">
-                                <div className="space-y-6">
+                              <div className="flex flex-col space-y-3 bg-gray-200 shadow-xl px-6 py-8 rounded-2xl">
+                                <div className="space-y-6 mt-3">
                                   <InputField
                                     label="Name"
                                     name="name"
