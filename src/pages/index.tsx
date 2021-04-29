@@ -240,22 +240,26 @@ const Index: React.FC<{}> = () => {
                           }}
                           onSubmit={async (
                             values,
-                            { setErrors, resetForm }
+                            { setErrors, setSubmitting, resetForm }
                           ) => {
+                            setSubmitting(true);
                             axios
                               .post("api/contact", values)
                               .then((res) => {
                                 if (res.data.status) {
                                   setShowContactSuccessModal(true);
+                                  setSubmitting(false);
                                   resetForm();
                                 } else {
+                                  setSubmitting(false);
                                   return setErrors({
                                     [res.data.error.field]:
                                       res.data.error.message,
                                   });
                                 }
                               })
-                              .catch((reason) => {
+                              .catch(() => {
+                                setSubmitting(false);
                                 toast.error(
                                   "Internal server error. Please, try again later."
                                 );
