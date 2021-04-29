@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import * as yup from "yup";
+import sendEmail from "../../utils/sendEmail";
 
 // Yup
 const ContactValObject = yup.object().shape({
@@ -10,7 +11,6 @@ const ContactValObject = yup.object().shape({
 
 type Response = {
   status: boolean;
-  message?: string;
   error?: {
     field: string;
     message: string;
@@ -19,6 +19,7 @@ type Response = {
 
 export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   if (req.method === "POST") {
+    // Validate
     let FormValues: any = req.body;
     try {
       const val = await ContactValObject.validate(FormValues);
@@ -33,10 +34,22 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
       });
     }
 
-    console.log(FormValues);
+    // Send email
+    try {
+      await sendEmail(
+        "mail@pronsd.com",
+        FormValues.subject,
+        FormValues.message
+      );
+    } catch (error) {
+      return res.status(500).json({
+        status: true,
+      });
+    }
+
+    // 200 response
     return res.json({
       status: true,
-      message: "Message sent successfuly, I'll answear as soon as I can!",
     });
   }
 };
