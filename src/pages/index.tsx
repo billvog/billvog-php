@@ -240,30 +240,27 @@ const Index: React.FC<{}> = () => {
                           }}
                           onSubmit={async (
                             values,
-                            { setErrors, setSubmitting, resetForm }
+                            { setErrors, resetForm }
                           ) => {
-                            setSubmitting(true);
-                            axios
-                              .post("api/contact", values)
-                              .then((res) => {
-                                if (res.data.status) {
-                                  setShowContactSuccessModal(true);
-                                  setSubmitting(false);
-                                  resetForm();
-                                } else {
-                                  setSubmitting(false);
-                                  return setErrors({
-                                    [res.data.error.field]:
-                                      res.data.error.message,
-                                  });
-                                }
-                              })
-                              .catch(() => {
-                                setSubmitting(false);
-                                toast.error(
-                                  "Internal server error. Please, try again later."
-                                );
-                              });
+                            try {
+                              const res = await axios.post(
+                                "api/contact",
+                                values
+                              );
+                              if (res.data.status) {
+                                setShowContactSuccessModal(true);
+                                resetForm();
+                              } else {
+                                setErrors({
+                                  [res.data.error.field]:
+                                    res.data.error.message,
+                                });
+                              }
+                            } catch (error) {
+                              toast.error(
+                                "Internal server error. Please, try again later."
+                              );
+                            }
                           }}
                         >
                           {({ isSubmitting }) => (

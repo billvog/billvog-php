@@ -20,7 +20,12 @@ type Response = {
 export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   if (req.method === "POST") {
     // Validate
-    let FormValues: any = req.body;
+    let FormValues: {
+      name: string;
+      email: string;
+      message: string;
+    } = req.body;
+
     try {
       const val = await ContactValObject.validate(FormValues);
       FormValues = val;
@@ -37,9 +42,19 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     // Send email
     try {
       await sendEmail(
-        "mail@pronsd.com",
-        FormValues.subject,
-        FormValues.message
+        "billvog.apps@gmail.com",
+        "Contact form (basiles.tk)",
+        `
+          <p>MESSAGE FROM CONTACT FORM (@ basiles.tk)</p>
+          <p>FROM: ${FormValues.name}</p>
+          <p>EMAIL: ${FormValues.email}</p>
+          <p>
+            MESSAGE:
+            <div stlye='white-space: pre-wrap'>
+              ${FormValues.message}
+            </div>
+          </p>
+        `
       );
     } catch (error) {
       return res.status(500).json({
