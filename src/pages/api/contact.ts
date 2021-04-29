@@ -15,7 +15,7 @@ type Response = {
     field: string;
     message: string;
   };
-};
+} | null;
 
 export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   if (req.method === "POST") {
@@ -48,10 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
           <p>MESSAGE FROM CONTACT FORM (@ basiles.tk)</p>
           <p>FROM: ${FormValues.name}</p>
           <p>EMAIL: ${FormValues.email}</p>
-          <p>MESSAGE:</p>
-          <div style='white-space: pre-wrap'>
-            ${FormValues.message}
-          </div>
+          <p>MESSAGE:</p><div style='white-space: pre-wrap'>${FormValues.message}</div>
         `
       );
     } catch (error) {
@@ -65,5 +62,8 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     return res.json({
       status: true,
     });
+  } else {
+    // Wrong method response
+    res.status(405).json(null);
   }
 };
