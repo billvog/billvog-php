@@ -14,8 +14,7 @@ const Index: React.FC<{}> = () => {
   return (
     <>
       <Head>
-        <title>Βασίλης Βογιατζής – Personal Homepage</title>
-        {/* <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> */}
+        <title>Βασίλης Βογιατζής (Basiles Bogiatzis)</title>
         <meta
           name="keywords"
           content="basiles, bogiatzhs, bogiatzis, billvog, βασιλης, βογιατζης, programmer, about, me, ferman"
@@ -61,7 +60,7 @@ const Index: React.FC<{}> = () => {
                               Βασίλης Βογιατζής
                             </div>
                             <div className="text-gray-400 text-xs w-full leading-tight">
-                              @BasilesBoyatzhs
+                              @BasilesBoyatzis
                             </div>
                             <div className="text-sm text-gray-400 mt-3">
                               <a
