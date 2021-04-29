@@ -243,10 +243,6 @@ const Index: React.FC<{}> = () => {
                             values,
                             { setErrors, resetForm }
                           ) => {
-                            toast.error(
-                              "Internal server error. Please, try again later."
-                            );
-                            return;
                             axios
                               .post("api/contact", values)
                               .then((res) => {
