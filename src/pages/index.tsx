@@ -6,11 +6,21 @@ import { FaTwitter, FaGithub } from "react-icons/fa";
 import { Controller, Scene } from "react-scrollmagic";
 import { InputField } from "../components/InputField";
 import { Spinner } from "../components/Spinner";
+import Head from "next/head";
+import { toast } from "react-toastify";
 
 const Index: React.FC<{}> = () => {
   const [showContactSuccessModal, setShowContactSuccessModal] = useState(false);
   return (
     <>
+      <Head>
+        <title>Βασίλης Βογιατζής – Personal Homepage</title>
+        {/* <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/> */}
+        <meta
+          name="keywords"
+          content="basiles, bogiatzhs, bogiatzis, billvog, βασιλης, βογιατζης, programmer, about, me, ferman"
+        />
+      </Head>
       <Controller>
         {/* About me */}
         <Scene duration="100%" triggerHook="onLeave" pin>
@@ -233,7 +243,10 @@ const Index: React.FC<{}> = () => {
                             values,
                             { setErrors, resetForm }
                           ) => {
-                            setShowContactSuccessModal(true);
+                            toast.error(
+                              "Internal server error. Please, try again later."
+                            );
+                            return;
                             axios
                               .post("api/contact", values)
                               .then((res) => {
@@ -248,7 +261,9 @@ const Index: React.FC<{}> = () => {
                                 }
                               })
                               .catch((reason) => {
-                                console.log("ERROR:", reason);
+                                toast.error(
+                                  "Internal server error. Please, try again later."
+                                );
                               });
                           }}
                         >

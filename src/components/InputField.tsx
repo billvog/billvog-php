@@ -20,7 +20,9 @@ export const InputField: React.FC<InputFieldProps> = ({
     <div className="relative">
       <label
         htmlFor={field.name}
-        className="bg-gray-300 text-gray-500 font-semibold text-sm absolute px-2 rounded-md"
+        className={`bg-${!!error ? "red-500" : "gray-300"} text-${
+          !!error ? "white" : "gray-500"
+        } font-semibold text-sm absolute px-2 rounded-md`}
         style={{
           top: -12,
           left: 5,
@@ -32,7 +34,9 @@ export const InputField: React.FC<InputFieldProps> = ({
         <textarea
           id={field.name}
           placeholder={props.placeholder}
-          className="w-full border-gray-300 border-2 rounded-lg"
+          className={`w-full border-${
+            !!error ? "red-500" : "gray-300"
+          } border-2 rounded-lg`}
           {...props}
           {...field}
         />
@@ -40,7 +44,9 @@ export const InputField: React.FC<InputFieldProps> = ({
         <input
           id={field.name}
           placeholder={props.placeholder}
-          className="w-full border-gray-300 border-2 rounded-lg"
+          className={`w-full border-${
+            !!error ? "red-500" : "gray-300"
+          } border-2 rounded-lg`}
           {...props}
           {...field}
         />
