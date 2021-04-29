@@ -2,6 +2,8 @@ import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
 export default async (to: string, subject: string, html: string) => {
+  console.log(process.env.EMAIL_API_KEY);
+
   let transporter: Mail;
   if (process.env.NODE_ENV !== "production") {
     transporter = nodemailer.createTransport({

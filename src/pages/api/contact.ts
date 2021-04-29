@@ -48,15 +48,14 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
           <p>MESSAGE FROM CONTACT FORM (@ basiles.tk)</p>
           <p>FROM: ${FormValues.name}</p>
           <p>EMAIL: ${FormValues.email}</p>
-          <p>
-            MESSAGE:
-            <div stlye='white-space: pre-wrap'>
-              ${FormValues.message}
-            </div>
-          </p>
+          <p>MESSAGE:</p>
+          <div style='white-space: pre-wrap'>
+            ${FormValues.message}
+          </div>
         `
       );
     } catch (error) {
+      console.log(error);
       return res.status(500).json({
         status: true,
       });
