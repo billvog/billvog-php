@@ -9,6 +9,7 @@ const Index: React.FC<{}> = () => {
     <>
       <Head>
         <title>Βασίλης Βογιατζής (Vasilis Voyadjis)</title>
+        <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg" />
         <meta
           name="keywords"
           content="basiles, bogiatzhs, bogiatzis, billvog, βασιλης, βογιατζης, programmer, about me"
@@ -84,23 +85,47 @@ const Index: React.FC<{}> = () => {
                         </div>
                       </div>
                       <div className="p-8">
-                        <div className="max-w-md text-white flex items-center flex-col">
-                          <div className="text-sm font-semibold">
-                            <span>
+                        <div className="max-w-lg text-white flex items-center flex-col">
+                          <div className="text-md font-semibold">
+                            <span
+                              style={{
+                                color: "burlywood",
+                              }}
+                            >
                               My name is Vasilis, I'm from Greece and I am{" "}
                               {new Date().getFullYear() - 2004} years old.
                               Currently, I'm a studying at University of Piraeus
                               Digital Systems.
                             </span>
                             <div className="my-2" />
-                            <span>
+                            <span
+                              style={{
+                                color: "aquamarine",
+                              }}
+                            >
                               I have been dealing with programming for a long
                               time, about {new Date().getFullYear() - 2015}{" "}
-                              years. In that time, I've work with a numerous
-                              languages and technologies. By watching YouTube
-                              hundrend of tutorials, experimenting and following
-                              the “trial and error“ method, I've came where I
-                              am.
+                              years. In that time, I've worked with numerous
+                              languages and technologies and built some simple
+                              and other slightly more complex projects that
+                              helped me understand the nature of Computer
+                              Science.
+                            </span>
+                            <div className="my-2" />
+                            <span
+                              style={{
+                                color: "yellow",
+                              }}
+                            >
+                              Beyond programming, one of my major hobbies is
+                              music. I like listening to music, the most of the
+                              genres, but mostly classical. Just try listening
+                              to Dvořák's 9th (especially the 3rd movement)
+                              while you're coding, you'll understand. I also
+                              play the piano the last{" "}
+                              {new Date().getFullYear() - 2019} years. In fact,
+                              I studied at the Music School of Veria during my
+                              high school years.
                             </span>
                           </div>
                         </div>
@@ -123,19 +148,14 @@ const Index: React.FC<{}> = () => {
                 <div
                   className="h-screen w-screen flex justify-center items-center"
                   style={{
-                    backgroundImage: "url(assets/colorful-background.jpg)",
+                    backgroundImage: "url(assets/background2.jpg)",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                     backgroundAttachment: "fixed",
                   }}
                 >
-                  <div
-                    className="h-screen w-screen p-12 flex justify-center items-center"
-                    style={{
-                      backdropFilter: `blur(${normalizedProgress * 24}px)`,
-                    }}
-                  >
+                  <div className="h-screen w-screen p-12 flex justify-center items-center">
                     <div className="flex justify-center items-center">
                       <div
                         className="flex justify-center align-middle max-w-lg"
@@ -143,14 +163,14 @@ const Index: React.FC<{}> = () => {
                           transform: `scale(${zoomFactor})`,
                         }}
                       >
-                        <div
-                          style={{
-                            opacity: normalizedProgress,
-                          }}
-                        >
-                          <div className="text-white flex items-center flex-col bg-gray-700 px-8 py-6 rounded-2xl">
+                        <div className="text-white flex items-center flex-col bg-gray-700 px-8 py-6 rounded-2xl">
+                          <div
+                            style={{
+                              opacity: normalizedProgress * 1.5,
+                            }}
+                          >
                             <div className="text-2xl text-center font-bold w-full">
-                              This is the title
+                              Project: Ferman
                             </div>
                             <div className="text-sm mt-1.5">
                               Lorem Ipsum is simply dummy text of the printing
@@ -184,32 +204,50 @@ const Index: React.FC<{}> = () => {
 
             return (
               <div className="overflow-x-hidden overflow-y-hidden">
-                <div className="h-screen w-screen px-0 py-6 md:p-12 bg-gradient-to-br from-yellow-500 to-red-500">
-                  <div className="flex justify-center items-center flex-col">
-                    <div className="max-w-full md:max-w-xl w-full">
-                      {/* Normal Heading */}
-                      <h1
-                        className="font-bold text-6xl text-transparent text-white mb-6 md:block hidden"
-                        style={{
-                          textIndent: normalizedProgress * 130,
-                          opacity: progress,
-                        }}
-                      >
-                        Contact me
-                      </h1>
-                      {/* Mobile Heading */}
-                      <h1 className="font-bold text-center text-6xl text-transparent bg-clip-text bg-gradient-to-bl from-yellow-500 to-red-500 mb-6 block md:hidden">
-                        Contact me
-                      </h1>
-                      <div
-                        style={{
-                          opacity: progress,
-                          transform: `translateY(${
-                            normalizedProgress * 100
-                          }vh)`,
-                        }}
-                      >
-                        <ContactForm />
+                <div className="h-screen w-screen bg-gray-700">
+                  <div
+                    className="absolute w-screen h-screen z-0"
+                    style={{
+                      backgroundImage: "url(assets/background3.jpg)",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundAttachment: "fixed",
+                      opacity: progress,
+                    }}
+                  >
+                    <div className="h-screen w-screen md:p-12 flex justify-center items-center">
+                      <div className="max-w-full md:max-w-xl w-full">
+                        {/* Normal Heading */}
+                        <h1
+                          className="font-bold text-6xl text-transparent text-white mb-6 md:block hidden"
+                          style={{
+                            textIndent: normalizedProgress * 130,
+                            opacity: progress,
+                          }}
+                        >
+                          Contact me
+                        </h1>
+                        {/* Mobile Heading */}
+                        <h1
+                          className="font-bold text-center text-6xl text-white mb-6 block md:hidden"
+                          style={{
+                            textIndent: normalizedProgress * 130,
+                            opacity: progress,
+                          }}
+                        >
+                          Contact me
+                        </h1>
+                        <div
+                          style={{
+                            opacity: progress,
+                            transform: `translateY(${
+                              normalizedProgress * 100
+                            }vh)`,
+                          }}
+                        >
+                          <ContactForm />
+                        </div>
                       </div>
                     </div>
                   </div>
