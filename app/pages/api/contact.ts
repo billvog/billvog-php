@@ -54,7 +54,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     } catch (error) {
       console.log(error);
       return res.status(500).json({
-        status: true,
+        status: false,
       });
     }
 

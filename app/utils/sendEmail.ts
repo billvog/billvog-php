@@ -27,7 +27,7 @@ export default async (to: string, subject: string, html: string) => {
   }
 
   let info = await transporter.sendMail({
-    from: '"Basiles PHP" <mail@basiles.tk>',
+    from: '"BILLVOG PHP" <hello@billvog.ga>',
     to,
     subject,
     html,
