@@ -43,12 +43,12 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     try {
       await sendEmail(
         "billvog.apps@gmail.com",
-        "Contact form (basiles.tk)",
+        "Message from contact form (@ billvog.ga)",
         `
-          <p>MESSAGE FROM CONTACT FORM (@ basiles.tk)</p>
-          <p>FROM: ${FormValues.name}</p>
-          <p>EMAIL: ${FormValues.email}</p>
-          <p>MESSAGE:</p><div style='white-space: pre-wrap'>${FormValues.message}</div>
+          <p>Master, you have a message from the contact from @ billvog.ga</p>
+          <p>From: ${FormValues.name}</p>
+          <p>Email: ${FormValues.email}</p>
+          <p>Message:</p><div style='white-space: pre-wrap'>${FormValues.message}</div>
         `
       );
     } catch (error) {
