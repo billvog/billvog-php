@@ -3,16 +3,23 @@ import React from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { Controller, Scene } from "react-scrollmagic";
 import { ContactForm } from "../components/ContactForm";
+import { shuffleArray } from "../utils/shuffleArray";
 
 const Index: React.FC<{}> = () => {
+  const bioTextColors = shuffleArray<string>([
+    "burlywood",
+    "aquamarine",
+    "yellow",
+  ]);
+
   return (
     <>
       <Head>
-        <title>Βασίλης Βογιατζής (Vasilis Voyadjis)</title>
+        <title>Βασίλης Βογιατζής (Vasilis Voyiadjis)</title>
         <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg" />
         <meta
           name="keywords"
-          content="basiles, bogiatzhs, bogiatzis, billvog, βασιλης, βογιατζης, programmer, about me"
+          content="basiles, bogiatzhs, bogiatzis, billvog, vasilis, voyiadjis, βασιλης, βογιατζης, programmer, about me"
         />
       </Head>
       <Controller>
@@ -20,6 +27,10 @@ const Index: React.FC<{}> = () => {
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
+
+            const blurAmount = normalizedProgress * 32;
+            const blurAmountWebKit = normalizedProgress * 24;
+
             return (
               <div className="overflow-x-hidden overflow-y-hidden">
                 <div
@@ -32,13 +43,14 @@ const Index: React.FC<{}> = () => {
                   }}
                 >
                   <div
-                    className="h-screen w-screen p-12 flex justify-center items-center"
+                    className="min-h-screen w-screen flex justify-center items-center"
                     style={{
-                      backdropFilter: `blur(${normalizedProgress * 32}px)`,
+                      backdropFilter: `blur(${blurAmount}px)`,
+                      WebkitBackdropFilter: `blur(${blurAmountWebKit}px)`,
                     }}
                   >
                     <div
-                      className="flex justify-center items-center flex-col md:flex-row"
+                      className="flex justify-center items-center flex-col pt-12 lg:pt-0 lg:flex-row"
                       style={{
                         opacity: normalizedProgress,
                         transform: `translateY(${progress * -100}vh)`,
@@ -55,30 +67,32 @@ const Index: React.FC<{}> = () => {
                               Βασίλης Βογιατζής
                             </div>
                             <div className="text-gray-400 text-xs font-mono w-full leading-tight">
-                              Vasilis Voyadjis
+                              Vasilis Voyiadjis
                             </div>
                             <div className="flex flex-col text-sm text-gray-400 mt-3 space-y-1">
                               <a
                                 target="blank"
                                 href="https://github.com/billvog"
+                                title="Find @ github.com"
                                 className="font-bold hover:underline flex items-center"
                                 style={{
                                   color: "#ededed",
                                 }}
                               >
                                 <FaGithub className="mr-1" />
-                                github
+                                GitHub
                               </a>
                               <a
                                 target="blank"
                                 href="https://twitter.com/voyiadjis"
+                                title="Find @ twitter.com"
                                 className="font-bold hover:underline flex items-center"
                                 style={{
                                   color: "#08a0e9",
                                 }}
                               >
                                 <FaTwitter className="mr-1" />
-                                twitter
+                                Twitter
                               </a>
                             </div>
                           </div>
@@ -89,18 +103,18 @@ const Index: React.FC<{}> = () => {
                           <div className="text-md font-semibold">
                             <span
                               style={{
-                                color: "burlywood",
+                                color: bioTextColors[0],
                               }}
                             >
                               My name is Vasilis, I'm from Greece and I am{" "}
                               {new Date().getFullYear() - 2004} years old.
-                              Currently, I'm a studying at University of Piraeus
-                              Digital Systems.
+                              Currently, I'm a studying at the Digital Systems
+                              Department of University of Piraeus.
                             </span>
                             <div className="my-2" />
                             <span
                               style={{
-                                color: "aquamarine",
+                                color: bioTextColors[1],
                               }}
                             >
                               I have been dealing with programming for a long
@@ -114,18 +128,15 @@ const Index: React.FC<{}> = () => {
                             <div className="my-2" />
                             <span
                               style={{
-                                color: "yellow",
+                                color: bioTextColors[2],
                               }}
                             >
                               Beyond programming, one of my major hobbies is
                               music. I like listening to music, the most of the
-                              genres, but mostly classical. Just try listening
-                              to Dvořák's 9th (especially the 3rd movement)
-                              while you're coding, you'll understand. I also
-                              play the piano the last{" "}
-                              {new Date().getFullYear() - 2019} years. In fact,
-                              I studied at the Music School of Veria during my
-                              high school years.
+                              genres, but mostly classical. I also play the
+                              piano the last {new Date().getFullYear() - 2019}{" "}
+                              years. In fact, I studied at the Music School of
+                              Veria during my high school years.
                             </span>
                           </div>
                         </div>
@@ -137,7 +148,7 @@ const Index: React.FC<{}> = () => {
             );
           }}
         </Scene>
-        {/* What do you code? */}
+        {/* About Ferman? */}
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
@@ -166,26 +177,47 @@ const Index: React.FC<{}> = () => {
                         <div className="text-white flex items-center flex-col bg-gray-700 px-8 py-6 rounded-2xl">
                           <div
                             style={{
-                              opacity: normalizedProgress * 1.5,
+                              opacity: normalizedProgress * 1.25,
                             }}
                           >
-                            <div className="text-2xl text-center font-bold w-full">
-                              Project: Ferman
+                            <div className="flex items-center text-2xl text-left font-bold">
+                              <div>Project:</div>
+                              <div className="flex items-center ml-2 space-x-2">
+                                <span className="underline text-yellow-300">
+                                  Ferman
+                                </span>
+                                <img
+                                  src="https://raw.githubusercontent.com/billvog/ferman/master/packages/web/public/favicon.ico"
+                                  className="w-8"
+                                />
+                              </div>
                             </div>
-                            <div className="text-sm mt-1.5">
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book. It has survived not only five centuries, but
-                              also the leap into electronic typesetting,
-                              remaining essentially unchanged. It was
-                              popularised in the 1960s with the release of
-                              Letraset sheets containing Lorem Ipsum passages,
-                              and more recently with desktop publishing software
-                              like Aldus PageMaker including versions of Lorem
-                              Ipsum.
+                            <div className="text-sm mt-1.5 font-medium space-y-2">
+                              <p>
+                                Ferman, is a project I started while learning
+                                ReactJS and GraphQL. During its development I
+                                learned a lot of new cool stuff, as it was my
+                                first commercial-like project that reached to a
+                                quite impressing point (for my then-standards).
+                              </p>
+                              <p>
+                                I've also implemented the basic functionality of
+                                Ferman on a mobile app built with React Native
+                                and Expo -- that was my introduction to mobile
+                                hybrid development.
+                              </p>
+                              <p>
+                                You can find the whole Ferman project on{" "}
+                                <a
+                                  title="Check Ferman on GitHub"
+                                  target="blank"
+                                  href="https://github.com/billvog/ferman"
+                                  className="text-blue-300 underline"
+                                >
+                                  GitHub
+                                </a>
+                                .
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -232,7 +264,6 @@ const Index: React.FC<{}> = () => {
                         <h1
                           className="font-bold text-center text-6xl text-white mb-6 block md:hidden"
                           style={{
-                            textIndent: normalizedProgress * 130,
                             opacity: progress,
                           }}
                         >

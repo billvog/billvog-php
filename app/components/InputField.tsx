@@ -54,7 +54,7 @@ export const InputField: React.FC<InputFieldProps> = ({
       {error && touched && (
         <div
           className={`${
-            !textarea ? "mt-1" : ""
+            !textarea ? "mt-1.5" : ""
           } text-red-500 font-semibold text-sm`}
         >
           {error}
