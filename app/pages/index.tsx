@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { Controller, Scene } from "react-scrollmagic";
 import { ContactForm } from "../components/ContactForm";
@@ -11,6 +11,25 @@ const Index: React.FC<{}> = () => {
     "aquamarine",
     "yellow",
   ]);
+
+  const [webNavigator, setWebNavigator] = useState<Navigator | null>(null);
+
+  useEffect(() => {
+    if (navigator) {
+      setWebNavigator(navigator);
+    }
+  }, []);
+
+  const backgroundParallaxStyles = {
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: webNavigator?.userAgent.match(
+      /(iPad|iPhone|iPod|Android|Silk)/gi
+    )
+      ? "scroll"
+      : "fixed",
+  };
 
   return (
     <>
@@ -36,10 +55,7 @@ const Index: React.FC<{}> = () => {
                 <div
                   style={{
                     backgroundImage: "url(assets/background.jpg)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundAttachment: "fixed",
+                    ...backgroundParallaxStyles,
                   }}
                 >
                   <div
@@ -160,10 +176,7 @@ const Index: React.FC<{}> = () => {
                   className="h-screen w-screen flex justify-center items-center"
                   style={{
                     backgroundImage: "url(assets/background2.jpg)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundAttachment: "fixed",
+                    ...backgroundParallaxStyles,
                   }}
                 >
                   <div className="h-screen w-screen p-12 flex justify-center items-center">
@@ -241,10 +254,7 @@ const Index: React.FC<{}> = () => {
                     className="absolute w-screen h-screen z-0"
                     style={{
                       backgroundImage: "url(assets/background3.jpg)",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                      backgroundAttachment: "fixed",
+                      ...backgroundParallaxStyles,
                       opacity: progress,
                     }}
                   >
