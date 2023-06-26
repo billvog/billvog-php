@@ -1,9 +1,12 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import { PiSoundcloudLogoFill } from "react-icons/pi";
 import { Controller, Scene } from "react-scrollmagic";
 import { ContactForm } from "../components/ContactForm";
 import { shuffleArray } from "../utils/shuffleArray";
+import { SocialMediaItem } from "../components/SocialMediaItem";
+import { FeaturedProjectsBox } from "../components/FeaturedProjectsBox";
 
 const Index: React.FC<{}> = () => {
   const bioTextColors = shuffleArray<string>([
@@ -77,7 +80,7 @@ const Index: React.FC<{}> = () => {
                           <div className="flex items-center flex-col">
                             <img
                               src="assets/profile.jpg"
-                              className="w-28 rounded-full"
+                              className="w-28 h-28 object-cover rounded-full"
                             />
                             <div className="mt-3 leading-tight">
                               Βασίλης Βογιατζής
@@ -86,30 +89,27 @@ const Index: React.FC<{}> = () => {
                               Vasilis Voyiadjis
                             </div>
                             <div className="flex flex-col text-sm text-gray-400 mt-3 space-y-1">
-                              <a
-                                target="blank"
-                                href="https://github.com/billvog"
-                                title="Find @ github.com"
-                                className="font-bold hover:underline flex items-center"
-                                style={{
-                                  color: "#ededed",
-                                }}
-                              >
-                                <FaGithub className="mr-1" />
-                                GitHub
-                              </a>
-                              <a
-                                target="blank"
-                                href="https://twitter.com/voyiadjis"
-                                title="Find @ twitter.com"
-                                className="font-bold hover:underline flex items-center"
-                                style={{
-                                  color: "#08a0e9",
-                                }}
-                              >
-                                <FaTwitter className="mr-1" />
-                                Twitter
-                              </a>
+                              <SocialMediaItem
+                                icon={FaGithub}
+                                text="Github"
+                                link="https://github.com/billvog"
+                                website="github.com"
+                                accentColor="#ededed"
+                              />
+                              <SocialMediaItem
+                                icon={FaTwitter}
+                                text="Twitter"
+                                link="https://twitter.com/voyiadjis"
+                                website="twitter.com"
+                                accentColor="#08a0e9"
+                              />
+                              <SocialMediaItem
+                                icon={PiSoundcloudLogoFill}
+                                text="Soundcloud"
+                                link="https://soundcloud.com/voyajis"
+                                website="soundcloud.com"
+                                accentColor="#fe6a20"
+                              />
                             </div>
                           </div>
                         </div>
@@ -148,11 +148,13 @@ const Index: React.FC<{}> = () => {
                               }}
                             >
                               Beyond programming, one of my major hobbies is
-                              music. I like listening to music, the most of the
-                              genres, but mostly classical. I also play the
-                              piano the last {new Date().getFullYear() - 2019}{" "}
-                              years. In fact, I studied at the Music School of
-                              Veria during my high school years.
+                              music. I like music consuming-and-producing-wise,
+                              meaning I listen to lots of music but also compose
+                              my own. I also play the piano the last{" "}
+                              {new Date().getFullYear() - 2019} years. In fact,
+                              I studied at the Music School of Veria during my
+                              high school years. You can find sample of my
+                              musical work on my Soundcloud.
                             </span>
                           </div>
                         </div>
@@ -193,45 +195,10 @@ const Index: React.FC<{}> = () => {
                               opacity: normalizedProgress * 1.25,
                             }}
                           >
-                            <div className="flex items-center text-2xl text-left font-bold">
-                              <div>Project:</div>
-                              <div className="flex items-center ml-2 space-x-2">
-                                <span className="underline text-yellow-300">
-                                  Ferman
-                                </span>
-                                <img
-                                  src="https://raw.githubusercontent.com/billvog/ferman/master/packages/web/public/favicon.ico"
-                                  className="w-8"
-                                />
-                              </div>
+                            <div className="text-sm text-white font-medium italic opacity-30 mb-2">
+                              A few words about some of my projects:
                             </div>
-                            <div className="text-sm mt-1.5 font-medium space-y-2">
-                              <p>
-                                Ferman, is a project I started while learning
-                                ReactJS and GraphQL. During its development I
-                                learned a lot of new cool stuff, as it was my
-                                first commercial-like project that reached to a
-                                quite impressing point (for my then-standards).
-                              </p>
-                              <p>
-                                I've also implemented the basic functionality of
-                                Ferman on a mobile app built with React Native
-                                and Expo -- that was my introduction to mobile
-                                hybrid development.
-                              </p>
-                              <p>
-                                You can find the whole Ferman project on{" "}
-                                <a
-                                  title="Check Ferman on GitHub"
-                                  target="blank"
-                                  href="https://github.com/billvog/ferman"
-                                  className="text-blue-300 underline"
-                                >
-                                  GitHub
-                                </a>
-                                .
-                              </p>
-                            </div>
+                            <FeaturedProjectsBox />
                           </div>
                         </div>
                       </div>

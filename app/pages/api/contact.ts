@@ -43,9 +43,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     try {
       await sendEmail(
         "billvog.apps@gmail.com",
-        "Message from contact form (@ billvog.ga)",
+        "Message from contact form (@ billv.org)",
         `
-          <p>Master, you have a message from the contact from @ billvog.ga</p>
+          <p>Master, you have a message from the contact from @ billv.org</p>
           <p>From: ${FormValues.name}</p>
           <p>Email: ${FormValues.email}</p>
           <p>Message:</p><div style='white-space: pre-wrap'>${FormValues.message}</div>
