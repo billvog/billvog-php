@@ -28,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
 
     try {
       const val = await ContactValObject.validate(FormValues);
-      FormValues = val;
+      FormValues = val as any;
     } catch (error) {
       return res.json({
         status: false,
