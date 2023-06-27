@@ -133,13 +133,21 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
           </a>
         </div>
       </div>
-      <div className="flex justify-center space-x-2 mt-6">
+      <div className="flex justify-center space-x-3 mt-6">
         {Projects.map((p, idx) => (
           <div
             key={p.title}
-            className={`w-2 h-2 rounded-full bg-black opacity-${
-              idx == selectedProjectIdx ? "50" : "20"
-            } hover:opacity-80 cursor-pointer hover:scale-125`}
+            className={`w-2 h-2 rounded-full hover:opacity-80 cursor-pointer hover:scale-125`}
+            style={
+              selectedProjectIdx == idx
+                ? {
+                    backgroundColor: selectedProject.accentColor,
+                    opacity: 0.7,
+                  }
+                : {
+                    backgroundColor: "rgb(0, 0, 0, .2)",
+                  }
+            }
             onClick={() => setSelectedProjectIdx(idx)}
           />
         ))}
