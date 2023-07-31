@@ -2,17 +2,17 @@ import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
 export default async (to: string, subject: string, html: string) => {
-  console.log(process.env.EMAIL_API_KEY);
-
   let transporter: Mail;
   if (process.env.NODE_ENV !== "production") {
+    // nodemailer.createTestAccount(console.log);
+
     transporter = nodemailer.createTransport({
       host: "smtp.ethereal.email",
       port: 587,
       secure: false,
       auth: {
-        user: "x3wbn5yx6or5i3tm@ethereal.email",
-        pass: "3UpB9BHvge7Q8DBRnk",
+        user: "zjo7biqjyff6izyo@ethereal.email",
+        pass: "49cBWenvYET1CfKSgA",
       },
     });
   } else {
@@ -27,7 +27,7 @@ export default async (to: string, subject: string, html: string) => {
   }
 
   let info = await transporter.sendMail({
-    from: '"BILLVOG PORTFOLIO" <hello@billv.org>',
+    from: '"billv.org Portfolio" <hello@billv.org>',
     to,
     subject,
     html,

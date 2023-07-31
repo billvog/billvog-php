@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { PiSoundcloudLogoFill } from "react-icons/pi";
 import { Controller, Scene } from "react-scrollmagic";
 import { ContactForm } from "../components/ContactForm";
@@ -37,8 +37,12 @@ const Index: React.FC<{}> = () => {
   return (
     <>
       <Head>
-        <title>Βασίλης Βογιατζής (Vasilis Voyiadjis)</title>
+        <title>Vasilis Voyiadjis</title>
         <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg" />
+        <meta
+          name="description"
+          content="Welcome to Vasilis Voyiadjis' Portfolio Website. Explore and learn about my featured projects and get to know me 8-bits more."
+        />
         <meta
           name="keywords"
           content="basiles, bogiatzhs, bogiatzis, billvog, vasilis, voyiadjis, βασιλης, βογιατζης, programmer, about me"
@@ -97,11 +101,11 @@ const Index: React.FC<{}> = () => {
                                 accentColor="#ededed"
                               />
                               <SocialMediaItem
-                                icon={FaTwitter}
-                                text="Twitter"
-                                link="https://twitter.com/voyiadjis"
-                                website="twitter.com"
-                                accentColor="#08a0e9"
+                                icon={FaLinkedin}
+                                text="LinkedIn"
+                                link="https://www.linkedin.com/in/vasilis-voyiadjis-a0aa0823b/"
+                                website="linkedin.com"
+                                accentColor="#107be6"
                               />
                               <SocialMediaItem
                                 icon={PiSoundcloudLogoFill}
@@ -124,8 +128,8 @@ const Index: React.FC<{}> = () => {
                             >
                               My name is Vasilis, I'm from Greece and I am{" "}
                               {new Date().getFullYear() - 2004} years old.
-                              Currently, I'm a studying at the Digital Systems
-                              Department of University of Piraeus.
+                              Currently, I study Computer Science and
+                              Telecommunications at the University of Thessaly
                             </span>
                             <div className="my-2" />
                             <span
@@ -166,7 +170,7 @@ const Index: React.FC<{}> = () => {
             );
           }}
         </Scene>
-        {/* About Ferman? */}
+        {/* Projects */}
         <Scene duration="100%" triggerHook="onLeave" pin>
           {(progress) => {
             const normalizedProgress = 1 - Math.abs(progress);
@@ -220,7 +224,7 @@ const Index: React.FC<{}> = () => {
                   <div
                     className="absolute w-screen h-screen z-0"
                     style={{
-                      backgroundImage: "url(assets/background3.jpg)",
+                      backgroundImage: "url(assets/blurred_background.jpg)",
                       ...backgroundParallaxStyles,
                       opacity: progress,
                     }}
@@ -229,7 +233,7 @@ const Index: React.FC<{}> = () => {
                       <div className="max-w-full md:max-w-xl w-full">
                         {/* Normal Heading */}
                         <h1
-                          className="font-bold text-6xl text-transparent text-white mb-6 md:block hidden"
+                          className="font-bold text-6xl text-white mb-6 md:block hidden"
                           style={{
                             textIndent: normalizedProgress * 130,
                             opacity: progress,

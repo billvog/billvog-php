@@ -126,7 +126,7 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
           <a
             target="blank"
             href={selectedProject.repoLink}
-            className="text-sm font-bold hover:underline"
+            className="text-sm font-bold"
             style={{ color: selectedProject.accentColor }}
           >
             Check {selectedProject.title} on Github.

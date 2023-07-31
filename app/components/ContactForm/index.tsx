@@ -4,11 +4,10 @@ import { Form, Formik, FormikErrors } from "formik";
 import React, { Fragment, useState } from "react";
 import { toast } from "react-toastify";
 import { InputField } from "./InputField";
-import { Spinner } from "./Spinner";
+import { Spinner } from "../Spinner";
+import { Button } from "./Button";
 
-interface ContactFormProps {}
-
-export const ContactForm: React.FC<ContactFormProps> = ({}) => {
+export const ContactForm: React.FC = () => {
   const [showContactSuccessModal, setShowContactSuccessModal] = useState(false);
 
   return (
@@ -61,7 +60,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div className="flex flex-col space-y-3 bg-gray-200 shadow-xl px-6 py-8 md:rounded-3xl">
+            <div className="flex flex-col space-y-3 bg-zinc-800 shadow-xl px-6 py-8">
               <div className="space-y-6 mt-3">
                 <InputField
                   label="Name"
@@ -82,20 +81,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
                   textarea
                 />
               </div>
-              <button
-                disabled={isSubmitting}
-                type="submit"
-                className="flex flex-row items-center justify-center rounded-xl bg-gradient-to-br from-green-400 to-blue-600 p-2 font-semibold text-md text-white hover:from-blue-400 focus:outline-none focus:ring-4 ring-offset-2 ring-offset-gray-700"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Spinner />
-                    Sending...
-                  </>
-                ) : (
-                  "Send"
-                )}
-              </button>
+              <Button type="submit" isLoading={isSubmitting}>
+                Send
+              </Button>
             </div>
           </Form>
         )}
@@ -129,27 +117,26 @@ export const ContactForm: React.FC<ContactFormProps> = ({}) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-zinc-800 shadow-xl">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-xl font-bold leading-6 text-purple-400"
                 >
                   Message sent
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-zinc-200">
                     Thanks for contacting me, I'll get in touch with you as soon
                     as I can!
                   </p>
                 </div>
                 <div className="mt-4">
-                  <button
+                  <Button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     onClick={() => setShowContactSuccessModal(false)}
                   >
                     Got it, thanks!
-                  </button>
+                  </Button>
                 </div>
               </div>
             </Transition.Child>

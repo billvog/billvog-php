@@ -16,17 +16,19 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const [field, { error, touched }] = useField(props);
 
+  const hasError = error && touched;
+
+  const InputStyle = `w-full border-2 ${
+    hasError ? "border-red-500" : "border-zinc-900"
+  } bg-zinc-700 text-white placeholder:text-zinc-500 placeholder:font-bold focus:outline-none focus:ring-0`;
+
   return (
     <div className="relative">
       <label
         htmlFor={field.name}
-        className={`${!!error ? "bg-red-500" : "bg-gray-300"} text-${
-          !!error ? "white" : "gray-500"
-        } font-semibold text-sm absolute px-2 rounded-md`}
-        style={{
-          top: -12,
-          left: 5,
-        }}
+        className={`${hasError ? "bg-red-500" : "bg-zinc-900"} text-${
+          hasError ? "white" : "purple-400"
+        } font-semibold text-sm absolute top-[-0.75rem] left-[.75rem] px-2`}
       >
         {label}
       </label>
@@ -34,9 +36,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         <textarea
           id={field.name}
           placeholder={props.placeholder}
-          className={`w-full border-2 ${
-            !!error ? "border-red-500" : "border-gray-300"
-          } rounded-lg min-h-[50px] max-h-[300px]`}
+          className={InputStyle + " min-h-[50px] max-h-[300px]"}
           {...props}
           {...field}
         />
@@ -44,9 +44,7 @@ export const InputField: React.FC<InputFieldProps> = ({
         <input
           id={field.name}
           placeholder={props.placeholder}
-          className={`w-full ${
-            !!error ? "border-red-500" : "border-gray-300"
-          } border-2 rounded-lg`}
+          className={InputStyle}
           {...props}
           {...field}
         />

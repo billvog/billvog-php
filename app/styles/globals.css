@@ -12,8 +12,13 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+	text-decoration: underline 2px;
+}
+
 * {
   box-sizing: border-box;
+	text-underline-offset: 0.25rem;
 }
 
 /* React Toastify */
