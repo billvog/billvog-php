@@ -17,7 +17,10 @@ type Response = {
   };
 } | null;
 
-export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+export default async function handleRequest(
+  req: NextApiRequest,
+  res: NextApiResponse<Response>
+) {
   if (req.method === "POST") {
     // Validate
     let FormValues: {
@@ -66,4 +69,4 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     // Wrong method response
     res.status(405).json(null);
   }
-};
+}

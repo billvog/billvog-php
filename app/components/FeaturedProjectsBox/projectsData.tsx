@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export type Project = {
   title: string;
   repoLink: string;
@@ -12,22 +14,24 @@ export const Projects: Project[] = [
     repoLink: "https://github.com/billvog/ferman",
     accentColor: "#fde047",
     icon: (
-      <img
+      <Image
+        alt="Ferman logo"
+        width={32}
+        height={32}
         src="https://raw.githubusercontent.com/billvog/ferman/master/packages/web/public/favicon.ico"
-        className="w-8"
       />
     ),
     content: (
       <>
         <p>
-          Ferman is the project I'm currently most proud of, being the one I've
-          dedicated plenty of my free time and one of my first attempts to use
-          React as well as GraphQL.
+          Ferman is the project I&apos;m currently most proud of, being the one
+          I&apos;ve dedicated plenty of my free time and one of my first
+          attempts to use React as well as GraphQL.
         </p>
         <p>
-          It's a social media, at its simplest form, where you can create and
-          like posts as well as following other users with which you have share
-          common opinions.
+          It&apos;s a social media, at its simplest form, where you can create
+          and like posts as well as following other users with which you have
+          share common opinions.
         </p>
       </>
     ),
@@ -37,17 +41,19 @@ export const Projects: Project[] = [
     repoLink: "https://github.com/billvog/bongo-cloud",
     accentColor: "#87CEEB",
     icon: (
-      <img
+      <Image
+        alt="Bongo Cloud logo"
+        width={32}
+        height={32}
         src="https://raw.githubusercontent.com/billvog/bongo-cloud/master/web/public/images/bongo.png"
-        className="w-8"
       />
     ),
     content: (
       <>
         <p>Bongo Cloud is a comic project of mine.</p>
         <p>
-          Let's just say there was an old laptop I didn't use and decided to
-          turn into a cloud storage server.
+          Let&apos;s just say there was an old laptop I didn&apos;t use and
+          decided to turn into a cloud storage server.
         </p>
         <p>
           The app implements a full filesystem, custom user authentication with
@@ -86,8 +92,8 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Todoc is officially my first (and currently only) app I've built for
-          iOS. For that, I used Swift, UIKit and of course Xcode.
+          Todoc is officially my first (and currently only) app I&apos;ve built
+          for iOS. For that, I used Swift, UIKit and of course Xcode.
         </p>
         <p>
           The app is, as you guessed, a todo list application. It lets you

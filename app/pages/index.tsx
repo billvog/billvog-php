@@ -7,6 +7,7 @@ import { ContactForm } from "../components/ContactForm";
 import { shuffleArray } from "../utils/shuffleArray";
 import { SocialMediaItem } from "../components/SocialMediaItem";
 import { FeaturedProjectsBox } from "../components/FeaturedProjectsBox";
+import Image from "next/image";
 
 const Index: React.FC<{}> = () => {
   const bioTextColors = shuffleArray<string>([
@@ -82,9 +83,12 @@ const Index: React.FC<{}> = () => {
                       <div className="flex justify-center align-middle">
                         <div className="p-6 bg-gray-800 text-white rounded-3xl shadow-md">
                           <div className="flex items-center flex-col">
-                            <img
-                              src="assets/profile.jpg"
-                              className="w-28 h-28 object-cover rounded-full"
+                            <Image
+                              alt="A profile picture of Vasilis"
+                              width={112}
+                              height={112}
+                              src="/assets/profile.jpg"
+                              className="object-cover rounded-full"
                             />
                             <div className="mt-3 leading-tight">
                               Βασίλης Βογιατζής
@@ -126,7 +130,7 @@ const Index: React.FC<{}> = () => {
                                 color: bioTextColors[0],
                               }}
                             >
-                              My name is Vasilis, I'm from Greece and I am{" "}
+                              My name is Vasilis, I&apos;m from Greece and I am{" "}
                               {new Date().getFullYear() - 2004} years old.
                               Currently, I study Computer Science and
                               Telecommunications at the University of Thessaly
@@ -139,10 +143,10 @@ const Index: React.FC<{}> = () => {
                             >
                               I have been dealing with programming for a long
                               time, about {new Date().getFullYear() - 2015}{" "}
-                              years. In that time, I've worked with numerous
-                              languages and technologies and built some simple
-                              and other slightly more complex projects that
-                              helped me understand the nature of Computer
+                              years. In that time, I&apos;ve worked with
+                              numerous languages and technologies and built some
+                              simple and other slightly more complex projects
+                              that helped me understand the nature of Computer
                               Science.
                             </span>
                             <div className="my-2" />

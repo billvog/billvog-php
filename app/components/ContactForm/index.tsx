@@ -126,8 +126,8 @@ export const ContactForm: React.FC = () => {
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-zinc-200">
-                    Thanks for contacting me, I'll get in touch with you as soon
-                    as I can!
+                    Thanks for contacting me, I&apos;ll get in touch with you as
+                    soon as I can!
                   </p>
                 </div>
                 <div className="mt-4">
