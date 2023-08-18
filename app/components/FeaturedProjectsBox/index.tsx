@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Projects } from "./projectsData";
+import { FeaturedProject } from "./featuredProject";
 
 interface FeaturedProjectsBoxProps {}
-
 export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0);
   const [selectedProject, setSelectedProject] = useState(
     Projects[selectedProjectIdx]
   );
 
+  const projectInvisibleRef = useRef(null);
+  const [newProjectInvisibleHeight, setNewProjectInvisibleHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    setNewProjectInvisibleHeight(projectInvisibleRef.current.offsetHeight);
+  }, [selectedProject]);
+
   useEffect(() => {
     setSelectedProject(Projects[selectedProjectIdx]);
   }, [selectedProjectIdx]);
 
   return (
-    <>
-      <div className="flex items-center text-2xl text-left font-bold">
-        <div>Project:</div>
-        <div className="flex items-center ml-2 space-x-2">
-          <span
-            className="underline"
-            style={{ color: selectedProject.accentColor }}
-          >
-            {selectedProject.title}
-          </span>
-          {selectedProject.icon}
-        </div>
+    <div>
+      {/* 
+				We use this to calculate the height of the FeaturedProject component 
+				with the new data, so we can animate to it smoothly.
+			*/}
+      <div className="opacity-0 absolute -z-50" ref={projectInvisibleRef}>
+        <FeaturedProject project={selectedProject} />
       </div>
-      <div className="mt-1.5 space-y-2">
-        <div className="text-sm font-medium space-y-2">
-          {selectedProject.content}
-        </div>
-        <div>
-          <a
-            target="blank"
-            href={selectedProject.repoLink}
-            className="text-sm font-bold"
-            style={{ color: selectedProject.accentColor }}
-          >
-            Check {selectedProject.title} on Github.
-          </a>
-        </div>
+
+      <div
+        style={{
+          maxHeight: newProjectInvisibleHeight || 0,
+          minHeight: newProjectInvisibleHeight || 0,
+          transition: "max-height, min-height",
+          transitionDuration: ".35s",
+          transitionTimingFunction: "ease",
+        }}
+      >
+        <FeaturedProject project={selectedProject} />
       </div>
-      <div className="flex justify-center space-x-3 mt-6">
+
+      <div className="flex justify-center space-x-3 pt-10 sm:pt-6">
         {Projects.map((p, idx) => (
           <div
             key={p.title}
@@ -61,6 +61,6 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
