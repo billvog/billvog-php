@@ -12,8 +12,22 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
   const projectInvisibleRef = useRef(null);
   const [newProjectInvisibleHeight, setNewProjectInvisibleHeight] = useState(0);
 
+  const featuredProjectContainerRef = useRef(null);
+
+  // Handle animation-related stuff.
   useLayoutEffect(() => {
     setNewProjectInvisibleHeight(projectInvisibleRef.current.offsetHeight);
+
+    if (featuredProjectContainerRef) {
+      featuredProjectContainerRef.current.animate(
+        [{ opacity: 0 }, { opacity: 1 }],
+        {
+          duration: 500,
+          iterations: 1,
+          easing: "ease",
+        }
+      );
+    }
   }, [selectedProject]);
 
   useEffect(() => {
@@ -31,6 +45,7 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
       </div>
 
       <div
+        ref={featuredProjectContainerRef}
         style={{
           maxHeight: newProjectInvisibleHeight || 0,
           minHeight: newProjectInvisibleHeight || 0,
