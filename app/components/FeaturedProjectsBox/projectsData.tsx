@@ -33,6 +33,32 @@ export const Projects: Project[] = [
     ),
   },
   {
+    title: "Bongo Cloud",
+    repoLink: "https://github.com/billvog/bongo-cloud",
+    accentColor: "#87CEEB",
+    icon: (
+      <img
+        src="https://raw.githubusercontent.com/billvog/bongo-cloud/master/web/public/images/bongo.png"
+        className="w-8"
+      />
+    ),
+    content: (
+      <>
+        <p>Bongo Cloud is a comic project of mine.</p>
+        <p>
+          Let's just say there was an old laptop I didn't use and decided to
+          turn into a cloud storage server.
+        </p>
+        <p>
+          The app implements a full filesystem, custom user authentication with
+          JWT and much more and consists of a Django API{" "}
+          <span title="Django Rest Framework">(with DRF)</span> and a React
+          frontend <span title="Create React App">(with CRA)</span>.
+        </p>
+      </>
+    ),
+  },
+  {
     title: "Sarf",
     repoLink: "https://github.com/billvog/sarf",
     accentColor: "#ff6363",
