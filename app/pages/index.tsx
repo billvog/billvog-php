@@ -132,10 +132,12 @@ const Index: React.FC<{}> = () => {
                                 color: bioTextColors[0],
                               }}
                             >
-                              My name is Vasilis, I&apos;m from Greece and I am{" "}
-                              {new Date().getFullYear() - 2004} years old.
-                              Currently, I study Computer Science and
-                              Telecommunications at the University of Thessaly
+                              I&apos;m Vasilis, a{" "}
+                              {new Date().getFullYear() - 2004}
+                              -year-old from Greece, currently pursuing a
+                              bachelor&apos;s degree in the Computer Science and
+                              Telecommunications department of the University of
+                              Thessaly.
                             </span>
                             <div className="my-2" />
                             <span
@@ -143,13 +145,12 @@ const Index: React.FC<{}> = () => {
                                 color: bioTextColors[1],
                               }}
                             >
-                              I have been dealing with programming for a long
-                              time, about {new Date().getFullYear() - 2015}{" "}
-                              years. In that time, I&apos;ve worked with
-                              numerous languages and technologies and built some
-                              simple and other slightly more complex projects
-                              that helped me understand the nature of Computer
-                              Science.
+                              In the realm of programming, I&apos;ve accumulated
+                              nearly {new Date().getFullYear() - 2018} years of
+                              experience, working with various languages and
+                              technologies. Through a range of personal
+                              projects, I&apos;ve developed a deep understanding
+                              of Computer Science.
                             </span>
                             <div className="my-2" />
                             <span
@@ -157,14 +158,15 @@ const Index: React.FC<{}> = () => {
                                 color: bioTextColors[2],
                               }}
                             >
-                              Beyond programming, one of my major hobbies is
-                              music. I like music consuming-and-producing-wise,
-                              meaning I listen to lots of music but also compose
-                              my own. I also play the piano the last{" "}
-                              {new Date().getFullYear() - 2019} years. In fact,
-                              I studied at the Music School of Veria during my
-                              high school years. You can find sample of my
-                              musical work on my Soundcloud.
+                              Apart from programming, music is a significant
+                              passion of mine. I not only savor a wide array of
+                              musical genres but also engage in music
+                              composition. Over the past four years, I&apos;ve
+                              been honing my piano skills, a journey that began
+                              with formal education at the Music School of Veria
+                              during my high school years. If you&apos;d like to
+                              explore my musical creations, you can find samples
+                              of my work on my Soundcloud profile.
                             </span>
                           </div>
                         </div>
