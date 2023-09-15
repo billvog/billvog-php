@@ -8,6 +8,7 @@ import { shuffleArray } from "../utils/shuffleArray";
 import { SocialMediaItem } from "../components/SocialMediaItem";
 import { FeaturedProjectsBox } from "../components/FeaturedProjectsBox";
 import Image from "next/image";
+import { ScrollDownIndicator } from "../components/ScrollDownIndicator";
 
 const Index: React.FC<{}> = () => {
   const bioTextColors = shuffleArray<string>([
@@ -60,6 +61,7 @@ const Index: React.FC<{}> = () => {
 
             return (
               <div className="overflow-x-hidden overflow-y-hidden">
+                <ScrollDownIndicator scrollFactor={progress} />
                 <div
                   style={{
                     backgroundImage: "url(assets/background.jpg)",
@@ -88,15 +90,15 @@ const Index: React.FC<{}> = () => {
                               width={112}
                               height={112}
                               src="/assets/profile.jpg"
-                              className="object-cover rounded-full"
+                              className="w-16 lg:w-28 h-auto object-cover rounded-full"
                             />
-                            <div className="mt-3 leading-tight">
+                            <div className="text-sm lg:text-base mt-3 leading-tight">
                               Βασίλης Βογιατζής
                             </div>
                             <div className="text-gray-400 text-xs font-mono w-full leading-tight">
                               Vasilis Voyiadjis
                             </div>
-                            <div className="flex flex-col text-sm text-gray-400 mt-3 space-y-1">
+                            <div className="flex flex-col text-xs lg:text-sm text-gray-400 mt-3 space-y-2">
                               <SocialMediaItem
                                 icon={FaGithub}
                                 text="Github"
@@ -124,7 +126,7 @@ const Index: React.FC<{}> = () => {
                       </div>
                       <div className="p-8">
                         <div className="max-w-lg text-white flex items-center flex-col">
-                          <div className="text-md font-semibold">
+                          <div className="text-sm lg:text-md font-semibold">
                             <span
                               style={{
                                 color: bioTextColors[0],
