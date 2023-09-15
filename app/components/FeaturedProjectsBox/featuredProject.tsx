@@ -10,7 +10,7 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
 }) => {
   return (
     <div>
-      <div className="flex items-center text-2xl text-left font-bold">
+      <div className="flex items-center text-base lg:text-2xl text-left font-bold">
         <div>Project:</div>
         <div className="flex items-center ml-2 space-x-2">
           <span className="underline" style={{ color: project.accentColor }}>
@@ -20,13 +20,15 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         </div>
       </div>
       <div className="mt-1.5 space-y-2">
-        <div className="text-sm font-medium space-y-2">{project.content}</div>
+        <div className="text-xs lg:text-sm font-medium space-y-2">
+          {project.content}
+        </div>
 
         <div>
           <a
             target="blank"
             href={project.repoLink}
-            className="text-sm font-bold"
+            className="text-xs lg:text-sm font-bold"
             style={{ color: project.accentColor }}
           >
             Check {project.title} on Github.

@@ -19,6 +19,7 @@ const imageProps: Omit<React.ComponentProps<typeof Image>, "alt" | "src"> = {
   loading: "eager",
   width: 32,
   height: 32,
+  className: "w-6 lg:w-8 h-auto",
 };
 
 export const Projects: Project[] = [
