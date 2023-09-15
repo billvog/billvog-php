@@ -21,7 +21,7 @@ export const SocialMediaItem: React.FC<SocialMediaItemProps> = ({
       target="blank"
       href={link}
       title={`Find @ ${website}`}
-      className="font-bold flex items-center space-x-2"
+      className="w-fit flex items-center font-bold space-x-2"
       style={{
         color: accentColor,
       }}
