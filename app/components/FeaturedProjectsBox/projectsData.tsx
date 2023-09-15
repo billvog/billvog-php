@@ -37,14 +37,10 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Ferman is the project I&apos;m currently most proud of, being the one
-          I&apos;ve dedicated plenty of my free time and one of my first
-          attempts to use React as well as GraphQL.
-        </p>
-        <p>
-          It&apos;s a social media, at its simplest form, where you can create
-          and like posts as well as following other users with which you have
-          share common opinions.
+          A content sharing, text-based platform, made for educational purposes,
+          successfully deployed using Dokku and Docker at AWS and, later on,
+          Heroku. It features a complete authentication system, real-time chat,
+          sophisticated frontend with SEO in mind and a mobile app.
         </p>
       </>
     ),
@@ -62,16 +58,10 @@ export const Projects: Project[] = [
     ),
     content: (
       <>
-        <p>Bongo Cloud is a comic project of mine.</p>
+        <p>Bongo Cloud is cloud storage solution.</p>
         <p>
-          Let&apos;s just say there was an old laptop I didn&apos;t use and
+          The idea occured, when I found an old laptop in the basement and
           decided to turn into a cloud storage server.
-        </p>
-        <p>
-          The app implements a full filesystem, custom user authentication with
-          JWT and much more and consists of a Django API{" "}
-          <span title="Django Rest Framework">(with DRF)</span> and a React
-          frontend <span title="Create React App">(with CRA)</span>.
         </p>
       </>
     ),
@@ -83,16 +73,12 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          SARF stands for Simple Archive Format and it is yet another way to
-          archive files.
+          SARF stands for Simple ARchive Format, and is yet another way to
+          archive your files.
         </p>
         <p>
-          It comes with a simple utility command line program that helps you
-          add, remove and stat files from an archive.
-        </p>
-        <p>
-          I started creating this little tool as a course of improving my
-          knowledge upon the C language.
+          Written in C and without any dependencies, SARF provides a consistent
+          and simple-to-use API, being able to be ported to any platform.
         </p>
       </>
     ),
@@ -104,13 +90,8 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Todoc is officially my first (and currently only) app I&apos;ve built
-          for iOS. For that, I used Swift, UIKit and of course Xcode.
-        </p>
-        <p>
-          The app is, as you guessed, a todo list application. It lets you
-          create a reminder which you provide with a title, date, etc. and
-          notifies you the given date and time to do the task.
+          Todoc is an iOS application made with Swift and UIKit that helps you
+          manage your tasks by providing a simple To-Do list.
         </p>
       </>
     ),
@@ -122,13 +103,17 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Glipus is a program that helps you encrypt and decrypt files using the
-          AES algorithm.
+          Glipus is a Windows application useful for encrypting and decrypting
+          files with the{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
+            target="blank"
+          >
+            AES algorithm
+          </a>
+          .
         </p>
-        <p>
-          The application is written in C++. For the GUI I used wxWidgets and
-          for the encryption the Crypto++ library.
-        </p>
+        <p>It is built with C++, wxWidgets and the Crypto++ library.</p>
       </>
     ),
   },
