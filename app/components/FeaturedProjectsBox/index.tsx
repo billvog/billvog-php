@@ -35,7 +35,7 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
   }, [selectedProjectIdx]);
 
   return (
-    <div>
+    <div className="relative">
       {/* 
 				We use this to calculate the height of the FeaturedProject component 
 				with the new data, so we can animate to it smoothly.
@@ -57,7 +57,7 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
         <FeaturedProject project={selectedProject} />
       </div>
 
-      <div className="flex justify-center space-x-3 pt-10 sm:pt-6">
+      <div className="flex justify-center space-x-3 pt-6">
         {Projects.map((p, idx) => (
           <div
             key={p.title}
