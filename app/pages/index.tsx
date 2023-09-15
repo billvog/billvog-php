@@ -107,7 +107,7 @@ const Index: React.FC<{}> = () => {
                               <SocialMediaItem
                                 icon={FaLinkedin}
                                 text="LinkedIn"
-                                link="https://www.linkedin.com/in/vasilis-voyiadjis-a0aa0823b/"
+                                link="https://www.linkedin.com/in/vasilis-voyiadjis/"
                                 website="linkedin.com"
                                 accentColor="#107be6"
                               />
