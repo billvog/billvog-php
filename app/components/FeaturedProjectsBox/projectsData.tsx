@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 
 export type Project = {
   title: string;
@@ -6,6 +7,18 @@ export type Project = {
   accentColor: string;
   icon?: React.ReactNode;
   content: React.ReactNode;
+};
+
+// Shared properties for Next's Image component.
+const imageProps: Omit<React.ComponentProps<typeof Image>, "alt" | "src"> = {
+  // Using eager loading, because with lazy loading
+  // there where cases where a new featured project
+  // was in viewport and for half a second the old
+  // project's logo was in the place of the new one.
+  // Eager loading seems that fixex that.
+  loading: "eager",
+  width: 32,
+  height: 32,
 };
 
 export const Projects: Project[] = [
@@ -16,9 +29,8 @@ export const Projects: Project[] = [
     icon: (
       <Image
         alt="Ferman logo"
-        width={32}
-        height={32}
         src="https://raw.githubusercontent.com/billvog/ferman/master/packages/web/public/favicon.ico"
+        {...imageProps}
       />
     ),
     content: (
@@ -43,9 +55,8 @@ export const Projects: Project[] = [
     icon: (
       <Image
         alt="Bongo Cloud logo"
-        width={32}
-        height={32}
         src="https://raw.githubusercontent.com/billvog/bongo-cloud/master/web/public/images/bongo.png"
+        {...imageProps}
       />
     ),
     content: (
