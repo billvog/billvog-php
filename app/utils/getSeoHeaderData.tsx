@@ -38,14 +38,12 @@ function getPersonMicrodata() {
     __html: JSON.stringify({
       "@context": "https://schema.org/",
       "@type": "Person",
-      image: commonData.avatar,
-      description: commonData.description,
-      familyName: commonData.lastName,
       givenName: commonData.firstName,
+      familyName: commonData.lastName,
+      description: commonData.description,
+      image: commonData.avatar,
       url: commonData.website,
-      gender: {
-        "@type": "Male",
-      },
+      gender: "Male",
       nationality: {
         "@type": "Country",
         name: "Greece",
