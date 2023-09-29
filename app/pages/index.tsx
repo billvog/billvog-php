@@ -9,6 +9,7 @@ import { SocialMediaItem } from "../components/SocialMediaItem";
 import { FeaturedProjectsBox } from "../components/FeaturedProjectsBox";
 import Image from "next/image";
 import { ScrollDownIndicator } from "../components/ScrollDownIndicator";
+import getSeoHeaderData from "../utils/getSeoHeaderData";
 
 const Index: React.FC<{}> = () => {
   const bioTextColors = shuffleArray<string>([
@@ -41,14 +42,8 @@ const Index: React.FC<{}> = () => {
       <Head>
         <title>Vasilis Voyiadjis</title>
         <link rel="shortcut icon" href="favicon.jpg" type="image/jpeg" />
-        <meta
-          name="description"
-          content="Welcome to Vasilis Voyiadjis' Portfolio Website. Explore and learn about my featured projects and get to know me 8-bits more."
-        />
-        <meta
-          name="keywords"
-          content="basiles, bogiatzhs, bogiatzis, billvog, vasilis, voyiadjis, βασιλης, βογιατζης, programmer, about me"
-        />
+        {/* Opengraph and Microdata tags for SEO */}
+        {getSeoHeaderData()}
       </Head>
       <Controller>
         {/* About me */}

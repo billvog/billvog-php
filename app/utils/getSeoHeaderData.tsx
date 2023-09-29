@@ -1,0 +1,76 @@
+import util from "util";
+
+const commonData = {
+  firstName: "Vasilis",
+  lastName: "Voyiadjis",
+  username: "Voyiadjis",
+  website: "https://billv.org",
+  avatar: "https://avatars.githubusercontent.com/u/54022416?v=4",
+  description:
+    "Welcome to Vasilis Voyiadjis' Portfolio Website. Explore and learn about my featured projects and get to know me 8-bits more.",
+};
+
+function getPersonOpengraphTags() {
+  return (
+    <>
+      <meta property="og:type" content="profile" />
+      <meta property="og:profile:first_name" content={commonData.firstName} />
+      <meta property="og:profile:last_name" content={commonData.lastName} />
+      <meta property="og:profile:username" content={commonData.username} />
+      <meta property="og:profile:gender" content="male" />
+      <meta property="og:description" content={commonData.description} />
+      <meta
+        property="og:title"
+        content={util.format(
+          "%s %s",
+          commonData.firstName,
+          commonData.lastName
+        )}
+      />
+      <meta property="og:url" content={commonData.website} />
+      <meta property="og:image" content={commonData.avatar} />
+    </>
+  );
+}
+
+function getPersonMicrodata() {
+  return {
+    __html: JSON.stringify({
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      image: commonData.avatar,
+      description: commonData.description,
+      familyName: commonData.lastName,
+      givenName: commonData.firstName,
+      url: commonData.website,
+      gender: {
+        "@type": "Male",
+      },
+      nationality: {
+        "@type": "Country",
+        name: "Greece",
+      },
+    }),
+  };
+}
+
+export default function getSeoHeaderData() {
+  return (
+    <>
+      {/* Common tags */}
+      <meta name="description" content={commonData.description} />
+      <meta
+        name="keywords"
+        content="basiles, bogiatzhs, bogiatzis, billvog, vasilis, voyiadjis, βασιλης, βογιατζης, programmer, about me"
+      />
+      {/* Opengraph tags */}
+      {getPersonOpengraphTags()}
+      {/* Microdata */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={getPersonMicrodata()}
+        key="person-jsonld"
+      />
+    </>
+  );
+}
