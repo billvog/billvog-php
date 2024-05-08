@@ -45,10 +45,10 @@ export default async function handleRequest(
     // Send email
     try {
       await sendEmail(
-        "billvog.apps@gmail.com",
-        "Message from contact form (@ billv.org)",
+        "vasilis@billvog.com",
+        "Message from contact form (@ billvog.com)",
         `
-          <p>Master, you have a message from the contact from @ billv.org</p>
+          <p>Master, you have a message from the contact from @ billvog.com</p>
           <p>From: ${FormValues.name}</p>
           <p>Email: ${FormValues.email}</p>
           <p>Message:</p><div style='white-space: pre-wrap'>${FormValues.message}</div>
