@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://billvog.com/sitemap.xml
