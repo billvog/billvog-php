@@ -3,8 +3,8 @@ import util from "util";
 const commonData = {
   firstName: "Vasilis",
   lastName: "Voyiadjis",
-  username: "Voyiadjis",
-  website: "https://billv.org",
+  username: "billvog",
+  website: "https://billvog.com",
   avatar: "https://avatars.githubusercontent.com/u/54022416?v=4",
   description:
     "Welcome to Vasilis Voyiadjis' Portfolio Website. Explore and learn about my featured projects and get to know me 8-bits more.",
