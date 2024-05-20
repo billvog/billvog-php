@@ -24,7 +24,18 @@ export const ContactForm: React.FC = () => {
 
   const [showContactSuccessModal, setShowContactSuccessModal] = useState(false);
 
-  function resetForm() {}
+  function resetForm(form: HTMLFormElement) {
+    // Reset state
+    setFormErrors({});
+    setFormValues({
+      name: "",
+      email: "",
+      message: "",
+    });
+
+    // Reset form
+    form.reset();
+  }
 
   function onFieldChange(event: ChangeEvent<HTMLInputElement>) {
     setFormValues((v) => ({ ...v, [event.target.id]: event.target.value }));
@@ -63,6 +74,8 @@ export const ContactForm: React.FC = () => {
     // Old-school js jazz
     event.preventDefault();
 
+    const form = event.target as HTMLFormElement;
+
     // Validation
     const hasError = validateForm();
     if (hasError) {
@@ -78,14 +91,14 @@ export const ContactForm: React.FC = () => {
       .then((res) => {
         if (res.status === 200) {
           setShowContactSuccessModal(true);
-          resetForm();
+          resetForm(form);
         } else {
           setFormErrors({
             [res.data.error.field]: res.data.error.message,
           });
         }
       })
-      .catch((e) => {
+      .catch(() => {
         setFormErrors({
           server: "Something went wrong on my side. Please, try again later :^)",
         });
@@ -100,7 +113,7 @@ export const ContactForm: React.FC = () => {
       <form onSubmit={submitForm}>
         <div className="flex flex-col space-y-3 bg-zinc-800 shadow-xl px-6 py-8">
           {typeof formErrors.server === "string" && (
-            <div className="p-4 text-red-500">{formErrors.server}</div>
+            <div className="pb-6 font-bold text-lg text-red-500">{formErrors.server}</div>
           )}
           <div className="space-y-6 mt-3">
             <InputField
