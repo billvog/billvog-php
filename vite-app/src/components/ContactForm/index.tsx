@@ -1,14 +1,9 @@
 import { Button } from "@/components/ContactForm/Button";
 import { InputField } from "@/components/ContactForm/InputField";
+import { TContactForm } from "@/types/Contact";
 import { Dialog, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import axios from "axios";
 import React, { ChangeEvent, FormEvent, Fragment, useState } from "react";
-
-type ContactForm = {
-  name: string;
-  email: string;
-  message: string;
-};
 
 type ContactFormErrors<T> = {
   [K in keyof T]?: string;
@@ -17,14 +12,14 @@ type ContactFormErrors<T> = {
 export const ContactForm: React.FC = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
 
-  const [formValues, setFormValues] = useState<ContactForm>({
+  const [formValues, setFormValues] = useState<TContactForm>({
     name: "",
     email: "",
     message: "",
   });
 
   const [formErrors, setFormErrors] = useState<
-    ContactFormErrors<ContactForm & { server: string }>
+    ContactFormErrors<TContactForm & { server: string }>
   >({});
 
   const [showContactSuccessModal, setShowContactSuccessModal] = useState(false);
@@ -32,14 +27,14 @@ export const ContactForm: React.FC = () => {
   function resetForm() {}
 
   function onFieldChange(event: ChangeEvent<HTMLInputElement>) {
-    setFormValues((v) => ({ ...v, [event.currentTarget.id]: event.currentTarget.value }));
+    setFormValues((v) => ({ ...v, [event.target.id]: event.target.value }));
   }
 
   function validateForm() {
     let hasError = false;
 
     // Following DRY as if some old asian master have taught me that.
-    function addError(field: keyof ContactForm, error: string) {
+    function addError(field: keyof TContactForm, error: string) {
       setFormErrors((v) => ({ ...v, [field]: error }));
       hasError = true;
     }
@@ -79,9 +74,9 @@ export const ContactForm: React.FC = () => {
 
     // Send to backend
     axios
-      .post("api/contact", formValues)
+      .post("/api/contact", formValues)
       .then((res) => {
-        if (res.data.status) {
+        if (res.status === 200) {
           setShowContactSuccessModal(true);
           resetForm();
         } else {
