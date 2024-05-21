@@ -36,10 +36,9 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          A content sharing, text-based platform, made for educational purposes,
-          successfully deployed using Dokku and Docker at AWS and, later on,
-          Heroku. It features a complete authentication system, real-time chat,
-          sophisticated frontend with SEO in mind and a mobile app.
+          A content sharing, text-based platform, featuring a complete authentication
+          system, real-time chat, sophisticated frontend with i18n translations for Greek
+          and English, SEO in mind and a mobile app.
         </p>
       </>
     ),
@@ -57,10 +56,10 @@ export const Projects: Project[] = [
     ),
     content: (
       <>
-        <p>Bongo Cloud is cloud storage solution.</p>
         <p>
-          The idea occured, when I found an old laptop in the basement and
-          decided to turn into a cloud storage server.
+          A cloud storage application, made for fun, after I discovered an old laptop that
+          was incapable of running anything but Linux. So, I decided to turn it into a
+          server and create this project to store files on it.
         </p>
       </>
     ),
@@ -72,12 +71,12 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          SARF stands for Simple ARchive Format, and is yet another way to
-          archive your files.
+          SARF stands for Simple ARchive Format, and is yet another way to archive your
+          files.
         </p>
         <p>
-          Written in C and without any dependencies, SARF provides a consistent
-          and simple-to-use API, being able to be ported to any platform.
+          Written in C and without any dependencies, SARF provides a consistent and
+          simple-to-use API, being able to be ported to any platform.
         </p>
       </>
     ),
@@ -89,8 +88,8 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Todoc is an iOS application made with Swift and UIKit that helps you
-          manage your tasks by providing a simple To-Do list.
+          Todoc is an iOS application made with Swift and UIKit that helps you manage your
+          tasks by providing a simple To-Do list.
         </p>
       </>
     ),
@@ -102,8 +101,8 @@ export const Projects: Project[] = [
     content: (
       <>
         <p>
-          Glipus is a Windows application useful for encrypting and decrypting
-          files with the{" "}
+          Glipus is a Windows application useful for encrypting and decrypting files with
+          the{" "}
           <a
             href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard"
             target="blank"
