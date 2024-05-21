@@ -45,6 +45,13 @@ export default function CreateHead({
       <meta property="og:url" content={MetaData.website} />
       <meta property="og:image" content={MetaData.avatar} />
 
+      {/* Twitter/X Tags */}
+      <meta property="twitter:image" content={MetaData.avatar} />
+      <meta property="twitter:card" content={MetaData.avatar} />
+      <meta property="twitter:site" content={MetaData.website} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
+
       {/* Microdata */}
       <script
         type="application/ld+json"
