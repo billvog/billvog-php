@@ -170,6 +170,9 @@ export default function App() {
             const normalizedProgress = 1 - Math.abs(progress);
             const zoomFactor = 1 + Math.abs(progress * 8);
 
+            const blurAmount = Math.min(progress * 100, 10);
+            const blurAmountWebKit = Math.min(progress * 75, 5);
+
             return (
               <div className="overflow-x-hidden overflow-y-hidden">
                 <div
@@ -179,7 +182,13 @@ export default function App() {
                     ...backgroundParallaxStyles,
                   }}
                 >
-                  <div className="h-screen w-screen p-12 flex justify-center items-center">
+                  <div
+                    style={{
+                      backdropFilter: `blur(${blurAmount}px)`,
+                      WebkitBackdropFilter: `blur(${blurAmountWebKit}px)`,
+                    }}
+                    className="h-screen w-screen p-12 flex justify-center items-center"
+                  >
                     <div className="flex justify-center items-center">
                       <div
                         className="flex justify-center align-middle max-w-lg"
@@ -187,7 +196,7 @@ export default function App() {
                           transform: `scale(${zoomFactor})`,
                         }}
                       >
-                        <div className="text-white flex items-center flex-col bg-gray-700 px-8 py-6 rounded-2xl">
+                        <div className="filter text-white flex items-center flex-col bg-gray-700 px-8 py-6 rounded-2xl">
                           <div
                             style={{
                               opacity: normalizedProgress * 1.25,

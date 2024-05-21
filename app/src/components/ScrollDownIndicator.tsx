@@ -18,7 +18,7 @@ export const ScrollDownIndicator: React.FC<ScrollDownIndicatorProps> = ({
           opacity: scrollFactor > 0.9 ? "0" : "1",
         }}
       >
-        <div className="px-6 py-4 rounded-2xl backdrop-blur scale-75 lg:scale-100">
+        <div className="px-6 py-4 rounded-2xl scale-75 lg:scale-100">
           <div className="flex flex-col items-center opacity-60">
             <img src={scrollGif} alt="Scroll Down" width={20} height={30} />
             <div className="mt-3 font-medium text-white text-sm lowercase hidden lg:block">
