@@ -2,7 +2,7 @@ import { Button } from "@/components/ContactForm/Button";
 import { InputField } from "@/components/ContactForm/InputField";
 import { ContactFormErrors, TContactForm } from "@/types/Contact";
 import { Dialog, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { ChangeEvent, FormEvent, Fragment, useState } from "react";
 
 export const ContactForm: React.FC = () => {
@@ -37,46 +37,11 @@ export const ContactForm: React.FC = () => {
     setFormValues((v) => ({ ...v, [event.target.id]: event.target.value }));
   }
 
-  function validateForm() {
-    let hasError = false;
-
-    // Following DRY as if some old asian master have taught me that.
-    function addError(field: keyof TContactForm, error: string) {
-      setFormErrors((v) => ({ ...v, [field]: error }));
-      hasError = true;
-    }
-
-    // Validate name
-    if (!formValues.name) {
-      addError("name", "Name is a required field");
-    }
-
-    // Validate email
-    if (!formValues.email) {
-      addError("email", "Email is a required field");
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formValues.email)) {
-      addError("email", "Invalid email address");
-    }
-
-    // Validate message
-    if (!formValues.message) {
-      addError("message", "Message is a required field");
-    }
-
-    return hasError;
-  }
-
   async function submitForm(event: FormEvent) {
     // Old-school js jazz
     event.preventDefault();
 
     const form = event.target as HTMLFormElement;
-
-    // Validation
-    const hasError = validateForm();
-    if (hasError) {
-      return;
-    }
 
     // Update loading state
     setIsFormLoading(true);
@@ -90,14 +55,21 @@ export const ContactForm: React.FC = () => {
           resetForm(form);
         } else {
           setFormErrors({
-            [res.data.error.field]: res.data.error.message,
+            server: "Something went wrong. Please try again later :^)",
           });
         }
       })
-      .catch(() => {
-        setFormErrors({
-          server: "Something went wrong on my side. Please, try again later :^)",
-        });
+      .catch((error: AxiosError<any>) => {
+        const { response } = error;
+        if (response && response.data.errors) {
+          Object.keys(response.data.errors).forEach((key) => {
+            setFormErrors((v) => ({ ...v, [key]: response.data.errors[key] }));
+          });
+        } else {
+          setFormErrors({
+            server: "Something went wrong on my side. Please, try again later :^)",
+          });
+        }
       })
       .finally(() => {
         setIsFormLoading(false);
@@ -119,6 +91,7 @@ export const ContactForm: React.FC = () => {
               placeholder="Your name"
               error={formErrors.name}
               onChange={onFieldChange}
+              required
             />
             <InputField
               label="Email"
@@ -127,6 +100,7 @@ export const ContactForm: React.FC = () => {
               placeholder="Your email"
               error={formErrors.email}
               onChange={onFieldChange}
+              required
             />
             <InputField
               label="Message"
@@ -135,6 +109,7 @@ export const ContactForm: React.FC = () => {
               error={formErrors.message}
               onChange={onFieldChange}
               textarea
+              required
             />
           </div>
           <Button type="submit" isLoading={isFormLoading}>
