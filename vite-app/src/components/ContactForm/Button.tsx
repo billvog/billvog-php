@@ -13,7 +13,10 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className="flex flex-row items-center justify-center bg-purple-500 py-2 px-4 font-bold text-base text-white hover:underline focus:outline-none focus:ring-4 ring-offset-4 ring-offset-zinc-800 ring-purple-700"
+      className={`flex flex-row items-center justify-center bg-purple-500 
+        py-2 px-4 font-bold text-base text-white hover:underline 
+        focus:outline-none focus:ring-4 ring-offset-4 
+        ring-offset-zinc-800 ring-purple-700`}
       disabled={isLoading}
       {...props}
     >

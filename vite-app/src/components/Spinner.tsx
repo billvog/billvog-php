@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Spinner: React.FC<{}> = () => {
+export const Spinner: React.FC = () => {
   return (
     <svg
       className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"

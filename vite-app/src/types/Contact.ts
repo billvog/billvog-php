@@ -3,3 +3,7 @@ export type TContactForm = {
   email: string;
   message: string;
 };
+
+export type ContactFormErrors<T> = {
+  [K in keyof T]?: string;
+};

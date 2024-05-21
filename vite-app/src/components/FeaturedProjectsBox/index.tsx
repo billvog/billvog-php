@@ -1,13 +1,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Projects } from "./ProjectsData";
-import { FeaturedProject } from "./FeaturedProject";
+import { Projects } from "@/components/FeaturedProjectsBox/ProjectsData";
+import { FeaturedProject } from "@/components/FeaturedProjectsBox/FeaturedProject";
 
-interface FeaturedProjectsBoxProps {}
-export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
+export const FeaturedProjectsBox: React.FC = () => {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0);
-  const [selectedProject, setSelectedProject] = useState(
-    Projects[selectedProjectIdx]
-  );
+  const [selectedProject, setSelectedProject] = useState(Projects[selectedProjectIdx]);
 
   const projectInvisibleRef = useRef<HTMLDivElement>(null);
   const [newProjectInvisibleHeight, setNewProjectInvisibleHeight] = useState(0);
@@ -21,14 +18,11 @@ export const FeaturedProjectsBox: React.FC<FeaturedProjectsBoxProps> = ({}) => {
     }
 
     if (featuredProjectContainerRef.current) {
-      featuredProjectContainerRef.current.animate(
-        [{ opacity: 0 }, { opacity: 1 }],
-        {
-          duration: 500,
-          iterations: 1,
-          easing: "ease",
-        }
-      );
+      featuredProjectContainerRef.current.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 500,
+        iterations: 1,
+        easing: "ease",
+      });
     }
   }, [selectedProject]);
 

@@ -1,13 +1,11 @@
 import React from "react";
-import { Project } from "./ProjectsData";
+import { Project } from "@/components/FeaturedProjectsBox/ProjectsData";
 
 interface FeaturedProjectProps {
   project: Project;
 }
 
-export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
-  project,
-}) => {
+export const FeaturedProject: React.FC<FeaturedProjectProps> = ({ project }) => {
   return (
     <div>
       <div className="flex items-center text-base lg:text-2xl text-left font-bold">
@@ -20,9 +18,7 @@ export const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         </div>
       </div>
       <div className="mt-1.5 space-y-2">
-        <div className="text-xs lg:text-sm font-medium space-y-2">
-          {project.content}
-        </div>
+        <div className="text-xs lg:text-sm font-medium space-y-2">{project.content}</div>
 
         <div>
           <a

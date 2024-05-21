@@ -1,13 +1,9 @@
 import { Button } from "@/components/ContactForm/Button";
 import { InputField } from "@/components/ContactForm/InputField";
-import { TContactForm } from "@/types/Contact";
+import { ContactFormErrors, TContactForm } from "@/types/Contact";
 import { Dialog, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import axios from "axios";
 import React, { ChangeEvent, FormEvent, Fragment, useState } from "react";
-
-type ContactFormErrors<T> = {
-  [K in keyof T]?: string;
-};
 
 export const ContactForm: React.FC = () => {
   const [isFormLoading, setIsFormLoading] = useState(false);
