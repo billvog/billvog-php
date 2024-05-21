@@ -17,7 +17,7 @@ import contactBackgroundImage from "@/assets/blurred_background.jpg";
 import profileImage from "@/assets/profile.jpg";
 
 export default function App() {
-  const bioTextColors = shuffleArray<string>(["burlywood", "aquamarine", "yellow"]);
+  const [bioTextColors, setBioTextColors] = useState<string[]>([]);
 
   const [webNavigator, setWebNavigator] = useState<Navigator | null>(null);
 
@@ -25,6 +25,8 @@ export default function App() {
     if (navigator) {
       setWebNavigator(navigator);
     }
+
+    setBioTextColors(shuffleArray<string>(["bisque", "aquamarine", "yellow"]));
   }, []);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -130,17 +132,16 @@ export default function App() {
                         </div>
                       </div>
                       <div className="p-8">
-                        <div className="max-w-lg text-white flex items-center flex-col">
+                        <div className="max-w-lg flex items-center flex-col">
                           <div className="text-sm lg:text-base font-semibold">
                             <span
                               style={{
                                 color: bioTextColors[0],
                               }}
                             >
-                              I&apos;m Vasilis, a {new Date().getFullYear() - 2004}
-                              -year-old from Greece, currently pursuing a bachelor&apos;s
-                              degree in the Computer Science and Telecommunications
-                              department of the University of Thessaly.
+                              I&apos;m Vasilis, a {new Date().getFullYear() - 2004}yo from
+                              Greece, currently studying CS at the University of Thessaly,
+                              love building stuff and trying out new technologies.
                             </span>
                             <div className="my-2" />
                             <span
@@ -148,11 +149,10 @@ export default function App() {
                                 color: bioTextColors[1],
                               }}
                             >
-                              In the realm of programming, I&apos;ve accumulated nearly{" "}
-                              {new Date().getFullYear() - 2018} years of experience,
-                              working with various languages and technologies. Through a
-                              range of personal projects, I&apos;ve developed a deep
-                              understanding of Computer Science.
+                              I've been into programming since a young age, and have
+                              experimented with a variety of sectors, including web,
+                              mobile and desktop development, but the first (web) is my
+                              passion. All my projects are on my Github.
                             </span>
                             <div className="my-2" />
                             <span
@@ -161,13 +161,10 @@ export default function App() {
                               }}
                             >
                               Apart from programming, music is a significant passion of
-                              mine. I not only savor a wide array of musical genres but
-                              also engage in music composition. Over the past four years,
-                              I&apos;ve been honing my piano skills, a journey that began
-                              with formal education at the Music School of Veria during my
-                              high school years. If you&apos;d like to explore my musical
-                              creations, you can find samples of my work on my Soundcloud
-                              profile.
+                              mine. I enjoy composing and playing the piano, a skill I've
+                              developed over the past four years, starting with my
+                              education at the Music School of Veria during high school.
+                              You can take a look of my work on my Soundcloud profile.
                             </span>
                           </div>
                         </div>
