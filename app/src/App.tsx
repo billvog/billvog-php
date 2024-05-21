@@ -11,7 +11,8 @@ import { Controller, Scene } from "react-scrollmagic";
 
 // Assets
 import aboutBackgroundImage from "@/assets/background.jpg";
-import projectsBackgroundImage from "@/assets/background2.jpg";
+import projectsBackgroundImageDesktop from "@/assets/background2-desktop.jpg";
+import projectsBackgroundImageMobile from "@/assets/background2-mobile.jpg";
 import contactBackgroundImage from "@/assets/blurred_background.jpg";
 import profileImage from "@/assets/profile.jpg";
 
@@ -26,16 +27,30 @@ export default function App() {
     }
   }, []);
 
-  const backgroundParallaxStyles = {
+  const [isMobile, setIsMobile] = useState(false);
+  const [parallaxStyles, setParallaxStyles] = useState({
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    backgroundAttachment: webNavigator?.userAgent.match(
-      /(iPad|iPhone|iPod|Android|Silk)/gi
-    )
-      ? "scroll"
-      : "fixed",
-  };
+    backgroundAttachment: "",
+  });
+
+  useEffect(() => {
+    if (!webNavigator) {
+      return;
+    }
+
+    setIsMobile(
+      webNavigator.userAgent.match(/(iPad|iPhone|iPod|Android|Silk)/gi) !== null
+    );
+  }, [webNavigator]);
+
+  useEffect(() => {
+    setParallaxStyles({
+      ...parallaxStyles,
+      backgroundAttachment: isMobile ? "scroll" : "fixed",
+    });
+  }, [isMobile]);
 
   return (
     <>
@@ -55,7 +70,7 @@ export default function App() {
                 <div
                   style={{
                     backgroundImage: `url(${aboutBackgroundImage})`,
-                    ...backgroundParallaxStyles,
+                    ...parallaxStyles,
                   }}
                 >
                   <div
@@ -77,18 +92,18 @@ export default function App() {
                           <div className="flex items-center flex-col">
                             <img
                               alt="A profile picture of Vasilis"
-                              width={112}
-                              height={112}
+                              width={120}
+                              height={120}
                               src={profileImage}
-                              className="w-16 lg:w-28 h-auto object-cover rounded-full"
+                              className="w-18 lg:w-30 h-auto object-cover rounded-full"
                             />
-                            <div className="text-sm lg:text-base mt-3 leading-tight">
+                            <div className="text-sm lg:text-lg font-extrabold mt-3 leading-tight">
                               Βασίλης Βογιατζής
                             </div>
-                            <div className="text-gray-400 text-xs font-mono w-full leading-tight">
+                            <div className="text-gray-400 text-xs lg:text-sm font-mono w-full leading-tight">
                               Vasilis Voyiadjis
                             </div>
-                            <div className="flex flex-col text-xs lg:text-sm text-gray-400 mt-3 space-y-2">
+                            <div className="flex flex-col text-sm lg:text-base text-gray-400 mt-4 space-y-2">
                               <SocialMediaItem
                                 icon={FaGithub}
                                 text="Github"
@@ -116,7 +131,7 @@ export default function App() {
                       </div>
                       <div className="p-8">
                         <div className="max-w-lg text-white flex items-center flex-col">
-                          <div className="text-sm lg:text-md font-semibold">
+                          <div className="text-sm lg:text-base font-semibold">
                             <span
                               style={{
                                 color: bioTextColors[0],
@@ -178,15 +193,23 @@ export default function App() {
                 <div
                   className="h-screen w-screen flex justify-center items-center"
                   style={{
-                    backgroundImage: `url(${projectsBackgroundImage})`,
-                    ...backgroundParallaxStyles,
+                    backgroundImage: `url(${
+                      isMobile
+                        ? projectsBackgroundImageMobile
+                        : projectsBackgroundImageDesktop
+                    })`,
+                    ...parallaxStyles,
                   }}
                 >
                   <div
-                    style={{
-                      backdropFilter: `blur(${blurAmount}px)`,
-                      WebkitBackdropFilter: `blur(${blurAmountWebKit}px)`,
-                    }}
+                    style={
+                      isMobile
+                        ? {}
+                        : {
+                            backdropFilter: `blur(${blurAmount}px)`,
+                            WebkitBackdropFilter: `blur(${blurAmountWebKit}px)`,
+                          }
+                    }
                     className="h-screen w-screen p-12 flex justify-center items-center"
                   >
                     <div className="flex justify-center items-center">
@@ -228,8 +251,8 @@ export default function App() {
                     className="absolute w-screen h-screen z-0"
                     style={{
                       backgroundImage: `url(${contactBackgroundImage})`,
-                      ...backgroundParallaxStyles,
                       opacity: progress,
+                      ...parallaxStyles,
                     }}
                   >
                     <div className="h-screen w-screen md:p-12 flex justify-center items-center">
