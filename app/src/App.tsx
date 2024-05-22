@@ -202,9 +202,6 @@ export default function App() {
                               opacity: normalizedProgress * 1.25,
                             }}
                           >
-                            <div className="text-xs lg:text-sm text-white font-medium italic opacity-30 mb-2">
-                              A few words about some of my projects:
-                            </div>
                             <FeaturedProjectsBox />
                           </div>
                         </div>
