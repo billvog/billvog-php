@@ -65,7 +65,7 @@ export const Projects: Project[] = [
     ),
   },
   {
-    title: "Sarf",
+    title: "SARF",
     repoLink: "https://github.com/billvog/sarf",
     accentColor: "#ff6363",
     content: (
