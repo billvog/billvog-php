@@ -1,8 +1,14 @@
 import { FeaturedProject } from "@/components/FeaturedProjectsBox/FeaturedProject";
 import { Projects } from "@/components/FeaturedProjectsBox/ProjectsData";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useSwipeable } from "react-swipeable";
+
+import CurvedArrowSvg from "@/assets/curved-arrow.svg";
 
 export const FeaturedProjectsBox: React.FC = () => {
+  const isMobile = useIsMobile();
+
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0);
 
   const selectedProject = useMemo(() => {
@@ -29,8 +35,26 @@ export const FeaturedProjectsBox: React.FC = () => {
     }
   }, [selectedProject]);
 
+  const swipeableHandlers = useSwipeable({
+    onSwipedLeft: () => {
+      setSelectedProjectIdx((prev) => (prev + 1) % Projects.length);
+    },
+    onSwipedRight: () => {
+      setSelectedProjectIdx((prev) => (prev - 1 + Projects.length) % Projects.length);
+    },
+  });
+
   return (
     <div className="relative">
+      {isMobile && (
+        <div className="absolute -top-[80px] -right-4 flex">
+          <span className="font-bold text-xs text-gray-200">
+            Swipe to see all the projects!
+          </span>
+          <img src={CurvedArrowSvg} alt="" width={40} className="-ml-5" />
+        </div>
+      )}
+
       {/* 
 				We use this to calculate the height of the FeaturedProject component 
 				with the new data, so we can animate to it smoothly.
@@ -39,17 +63,19 @@ export const FeaturedProjectsBox: React.FC = () => {
         <FeaturedProject project={selectedProject} />
       </div>
 
-      <div
-        ref={featuredProjectContainerRef}
-        style={{
-          maxHeight: newInvisibleProjectHeight || 0,
-          minHeight: newInvisibleProjectHeight || 0,
-          transition: "max-height, min-height",
-          transitionDuration: ".35s",
-          transitionTimingFunction: "ease",
-        }}
-      >
-        <FeaturedProject project={selectedProject} />
+      <div {...swipeableHandlers}>
+        <div
+          ref={featuredProjectContainerRef}
+          style={{
+            maxHeight: newInvisibleProjectHeight || 0,
+            minHeight: newInvisibleProjectHeight || 0,
+            transition: "max-height, min-height",
+            transitionDuration: ".35s",
+            transitionTimingFunction: "ease",
+          }}
+        >
+          <FeaturedProject project={selectedProject} />
+        </div>
       </div>
 
       <div className="flex justify-center space-x-3 pt-6">
