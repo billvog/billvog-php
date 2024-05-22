@@ -4,7 +4,7 @@ import { FeaturedProjectsBox } from "@/components/FeaturedProjectsBox";
 import { ScrollDownIndicator } from "@/components/ScrollDownIndicator";
 import { SocialMediaItem } from "@/components/SocialMediaItem";
 import { shuffleArray } from "@/utils/shuffleArray";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { PiSoundcloudLogoFill } from "react-icons/pi";
 import { Controller, Scene } from "react-scrollmagic";
@@ -17,42 +17,27 @@ import contactBackgroundImage from "@/assets/blurred_background.jpg";
 import profileImage from "@/assets/profile.jpg";
 
 export default function App() {
-  const [bioTextColors, setBioTextColors] = useState<string[]>([]);
-
-  const [webNavigator, setWebNavigator] = useState<Navigator | null>(null);
-
-  useEffect(() => {
-    if (navigator) {
-      setWebNavigator(navigator);
-    }
-
-    setBioTextColors(shuffleArray<string>(["bisque", "aquamarine", "yellow"]));
+  const bioTextColors = useMemo(() => {
+    return shuffleArray<string>(["bisque", "aquamarine", "yellow"]);
   }, []);
 
-  const [isMobile, setIsMobile] = useState(false);
-  const [parallaxStyles, setParallaxStyles] = useState({
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "",
-  });
-
-  useEffect(() => {
-    if (!webNavigator) {
-      return;
+  const isMobile = useMemo(() => {
+    if (!navigator) {
+      return false;
     }
 
-    setIsMobile(
-      webNavigator.userAgent.match(/(iPad|iPhone|iPod|Android|Silk)/gi) !== null
-    );
-  }, [webNavigator]);
+    return navigator.userAgent.match(/(iPad|iPhone|iPod|Android|Silk)/gi) !== null;
+  }, [navigator]);
 
-  useEffect(() => {
-    setParallaxStyles({
-      ...parallaxStyles,
+  const parallaxStyles = useMemo(
+    () => ({
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
       backgroundAttachment: isMobile ? "scroll" : "fixed",
-    });
-  }, [isMobile]);
+    }),
+    [isMobile]
+  );
 
   return (
     <>
