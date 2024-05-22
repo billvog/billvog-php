@@ -3,6 +3,7 @@ import CreateHead from "@/components/CreateHead";
 import { FeaturedProjectsBox } from "@/components/FeaturedProjectsBox";
 import { ScrollDownIndicator } from "@/components/ScrollDownIndicator";
 import { SocialMediaItem } from "@/components/SocialMediaItem";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { shuffleArray } from "@/utils/shuffleArray";
 import { useMemo } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -17,17 +18,11 @@ import contactBackgroundImage from "@/assets/blurred_background.jpg";
 import profileImage from "@/assets/profile.jpg";
 
 export default function App() {
+  const isMobile = useIsMobile();
+
   const bioTextColors = useMemo(() => {
     return shuffleArray<string>(["bisque", "aquamarine", "yellow"]);
   }, []);
-
-  const isMobile = useMemo(() => {
-    if (!navigator) {
-      return false;
-    }
-
-    return navigator.userAgent.match(/(iPad|iPhone|iPod|Android|Silk)/gi) !== null;
-  }, [navigator]);
 
   const parallaxStyles = useMemo(
     () => ({
