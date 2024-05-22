@@ -47,7 +47,7 @@ export const FeaturedProjectsBox: React.FC = () => {
   return (
     <div className="relative">
       {isMobile && (
-        <div className="absolute -top-[80px] -right-4 flex">
+        <div className="absolute -top-[58px] -right-4 flex">
           <span className="font-bold text-xs text-gray-200">
             Swipe to see all the projects!
           </span>
