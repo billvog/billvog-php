@@ -1,20 +1,23 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Projects } from "@/components/FeaturedProjectsBox/ProjectsData";
 import { FeaturedProject } from "@/components/FeaturedProjectsBox/FeaturedProject";
+import { Projects } from "@/components/FeaturedProjectsBox/ProjectsData";
+import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
 
 export const FeaturedProjectsBox: React.FC = () => {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0);
-  const [selectedProject, setSelectedProject] = useState(Projects[selectedProjectIdx]);
 
-  const projectInvisibleRef = useRef<HTMLDivElement>(null);
-  const [newProjectInvisibleHeight, setNewProjectInvisibleHeight] = useState(0);
+  const selectedProject = useMemo(() => {
+    return Projects[selectedProjectIdx];
+  }, [selectedProjectIdx]);
 
+  const invisibleProjectRef = useRef<HTMLDivElement>(null);
   const featuredProjectContainerRef = useRef<HTMLDivElement>(null);
+
+  const [newInvisibleProjectHeight, setNewInvisibleProjectHeight] = useState(0);
 
   // Handle animation-related stuff.
   useLayoutEffect(() => {
-    if (projectInvisibleRef.current) {
-      setNewProjectInvisibleHeight(projectInvisibleRef.current.offsetHeight);
+    if (invisibleProjectRef.current) {
+      setNewInvisibleProjectHeight(invisibleProjectRef.current.offsetHeight);
     }
 
     if (featuredProjectContainerRef.current) {
@@ -26,25 +29,21 @@ export const FeaturedProjectsBox: React.FC = () => {
     }
   }, [selectedProject]);
 
-  useEffect(() => {
-    setSelectedProject(Projects[selectedProjectIdx]);
-  }, [selectedProjectIdx]);
-
   return (
     <div className="relative">
       {/* 
 				We use this to calculate the height of the FeaturedProject component 
 				with the new data, so we can animate to it smoothly.
 			*/}
-      <div className="opacity-0 absolute -z-50" ref={projectInvisibleRef}>
+      <div className="opacity-0 absolute -z-50" ref={invisibleProjectRef}>
         <FeaturedProject project={selectedProject} />
       </div>
 
       <div
         ref={featuredProjectContainerRef}
         style={{
-          maxHeight: newProjectInvisibleHeight || 0,
-          minHeight: newProjectInvisibleHeight || 0,
+          maxHeight: newInvisibleProjectHeight || 0,
+          minHeight: newInvisibleProjectHeight || 0,
           transition: "max-height, min-height",
           transitionDuration: ".35s",
           transitionTimingFunction: "ease",
