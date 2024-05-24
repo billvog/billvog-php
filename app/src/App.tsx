@@ -103,7 +103,7 @@ export default function App() {
                               <SocialMediaItem
                                 icon={PiSoundcloudLogoFill}
                                 text="Soundcloud"
-                                link="https://soundcloud.com/voyajis"
+                                link="https://soundcloud.com/billvog"
                                 website="soundcloud.com"
                                 accentColor="#fe6a20"
                               />
